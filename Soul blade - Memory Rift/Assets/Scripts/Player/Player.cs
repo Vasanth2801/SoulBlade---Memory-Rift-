@@ -23,6 +23,7 @@ public class Player : MonoBehaviour
     [Header("Unity Components References")]
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private PlayerInput player;
+    [SerializeField] private Animator anim;
 
     [Header("Inputs")]
     [SerializeField] private Vector2 moveInput;
@@ -37,6 +38,7 @@ public class Player : MonoBehaviour
     private void Update()
     {
         Flip();
+        HandleAnimations();
     }
 
     private void FixedUpdate()
@@ -108,6 +110,16 @@ public class Player : MonoBehaviour
         {
             rb.gravityScale = normalGravity;
         }
+    }
+
+    void HandleAnimations()
+    {
+        anim.SetBool("isJumping", rb.linearVelocity.y > 0.1f);
+        anim.SetBool("isGrounded", isGrounded);
+        anim.SetFloat("yVelocity", rb.linearVelocity.y);
+
+        anim.SetBool("isIdle", Mathf.Abs(moveInput.x) < 0.1f && isGrounded);
+        anim.SetBool("isWalking", Mathf.Abs(moveInput.x) > 0.1f && isGrounded);
     }
 
     void Flip()
