@@ -1084,7 +1084,7 @@ Rigidbody2D:
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 4
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 92b7dbaa140f8d34cacb5388d382f783, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -1175,8 +1175,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
   walkSpeed: 4
+  runSpeed: 8
   facingDirection: 1
-  jumpForce: 21
+  jumpForce: 25
   jumpCutMultiplier: 0.5
   normalGravity: 4
   jumpGravity: 6
@@ -1193,6 +1194,7 @@ MonoBehaviour:
   moveInput: {x: 0, y: 0}
   jumpPressed: 0
   jumpReleased: 0
+  runPressed: 0
 --- !u!1 &1507505544
 GameObject:
   m_ObjectHideFlags: 0

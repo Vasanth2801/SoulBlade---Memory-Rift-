@@ -5,6 +5,7 @@ public class Player : MonoBehaviour
 {
     [Header("Movement Settings")]
     [SerializeField] private float walkSpeed = 4f;
+    [SerializeField] private float runSpeed = 8f;
     [SerializeField] private int facingDirection = 1;
 
     [Header("Jump Settings")]
@@ -13,6 +14,16 @@ public class Player : MonoBehaviour
     [SerializeField] private float normalGravity;
     [SerializeField] private float jumpGravity;
     [SerializeField] private float fallGravity;
+
+    [Header("Slide Settings")]
+    [SerializeField] private float slideDuration = 0.6f;
+    [SerializeField] private float slideSpeed = 12f;
+    [SerializeField] private float slideStopDuration = 0.15f;
+
+    private bool isSliding;
+    private bool slideInputLocked;
+    private float slideTimer;
+    private float slideStopTimer;
 
     [Header("Ground Check Settings")]
     [SerializeField] private Transform groundCheck;
@@ -29,6 +40,7 @@ public class Player : MonoBehaviour
     [SerializeField] private Vector2 moveInput;
     [SerializeField] private bool jumpPressed;
     [SerializeField] private bool jumpReleased;
+    [SerializeField] private bool runPressed;
 
     private void Start()
     {
@@ -37,13 +49,21 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        Flip();
+        if(!isSliding)
+        {
+            Flip();
+        }
+      
         HandleAnimations();
+        HandleSlide();
     }
 
     private void FixedUpdate()
     {
-        HandleMovement();
+        if (!isSliding)
+        {
+            HandleMovement();
+        }
         HandleJump();
         CheckGrounded();
         ApplyGravity();
@@ -51,7 +71,8 @@ public class Player : MonoBehaviour
 
     void HandleMovement()
     {
-        float targetSpeed = moveInput.x * walkSpeed;
+        float currentSpeed = runPressed ? runSpeed : walkSpeed;
+        float targetSpeed = moveInput.x * currentSpeed;
         rb.linearVelocity = new Vector2(targetSpeed, rb.linearVelocity.y);
     }
 
@@ -73,6 +94,39 @@ public class Player : MonoBehaviour
         }
     }
 
+    void HandleSlide()
+    {
+        if(isSliding)
+        {
+            slideTimer -= Time.deltaTime;
+            rb.linearVelocity = new Vector2(slideSpeed * facingDirection, rb.linearVelocity.y);
+
+            if(slideTimer <= 0)
+            {
+                isSliding = false;
+                slideStopTimer = slideStopDuration;
+            }
+        }
+
+        if(slideStopTimer > 0)
+        {
+            slideStopTimer -= Time.deltaTime;
+            rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
+        }
+
+        if(isGrounded && runPressed && moveInput.y < -0.1f && !isSliding && !slideInputLocked)
+        {
+            isSliding = true;
+            slideInputLocked = true;
+            slideTimer = slideDuration;
+        }
+
+        if(slideStopTimer < 0 && moveInput.y >= -0.1f)
+        {
+            slideInputLocked = false;
+        }
+    }
+
     public void OnMove(InputValue value)
     {
         moveInput = value.Get<Vector2>();
@@ -89,6 +143,11 @@ public class Player : MonoBehaviour
         {
            jumpReleased = true;
         }
+    }
+
+    public void OnRun(InputValue value)
+    {
+        runPressed = value.isPressed;
     }
 
     void CheckGrounded()
@@ -118,8 +177,12 @@ public class Player : MonoBehaviour
         anim.SetBool("isGrounded", isGrounded);
         anim.SetFloat("yVelocity", rb.linearVelocity.y);
 
-        anim.SetBool("isIdle", Mathf.Abs(moveInput.x) < 0.1f && isGrounded);
-        anim.SetBool("isWalking", Mathf.Abs(moveInput.x) > 0.1f && isGrounded);
+        anim.SetBool("isSliding", isSliding);
+
+        bool isMoving = Mathf.Abs(moveInput.x) > 0.1f && isGrounded;
+        anim.SetBool("isIdle", !isMoving && isGrounded && !isSliding);
+        anim.SetBool("isWalking", isMoving && !runPressed && !isSliding);
+        anim.SetBool("isRunning", isMoving && runPressed && !isSliding);
     }
 
     void Flip()
