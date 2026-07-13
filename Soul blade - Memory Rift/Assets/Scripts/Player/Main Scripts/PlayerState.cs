@@ -6,6 +6,10 @@ public abstract class PlayerState
     protected Animator anim;
     protected Rigidbody2D rb;
 
+    protected bool JumpPressed { get => player.jumpPressed; set => player.jumpPressed = value; }
+    protected bool JumpReleased { get => player.jumpReleased; set => player.jumpReleased = value;  }
+    protected bool RunPressed => player.runPressed;
+
     public PlayerState(Player player) 
     {
         this.player = player;

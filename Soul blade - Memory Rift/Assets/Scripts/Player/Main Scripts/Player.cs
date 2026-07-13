@@ -1,4 +1,3 @@
-using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,13 +10,13 @@ public class Player : MonoBehaviour
 
 
     [Header("Movement Settings")]
-    [SerializeField] private float walkSpeed = 4f;
-    [SerializeField] private float runSpeed = 8f;
-    [SerializeField] private int facingDirection = 1;
+    public float walkSpeed = 4f;
+    public float runSpeed = 8f;
+    public int facingDirection = 1;
 
     [Header("Jump Settings")]
-    [SerializeField] private float jumpForce = 10f;
-    [SerializeField] private float jumpCutMultiplier = 0.5f;
+    public float jumpForce = 10f;
+    public float jumpCutMultiplier = 0.5f;
     [SerializeField] private float normalGravity;
     [SerializeField] private float jumpGravity;
     [SerializeField] private float fallGravity;
@@ -45,7 +44,7 @@ public class Player : MonoBehaviour
     [SerializeField] private Transform groundCheck;
     [SerializeField] private float groundCheckRadius = 0.3f;
     [SerializeField] private LayerMask groundLayer;
-    [SerializeField] private bool isGrounded;
+    public bool isGrounded;
  
     [Header("Unity Components References")]
     public Rigidbody2D rb;
@@ -56,8 +55,8 @@ public class Player : MonoBehaviour
     [Header("Inputs")]
     [SerializeField] private Vector2 moveInput;
     public bool jumpPressed;
-    [SerializeField] private bool jumpReleased;
-    [SerializeField] private bool runPressed;
+    public bool jumpReleased;
+    public bool runPressed;
 
     private void Awake()
     {
@@ -74,6 +73,7 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        currentState.Update();
         TryStandUp();
         if(!isSliding)
         {
@@ -86,11 +86,11 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
+        currentState.FixedUpdate();
         if (!isSliding)
         {
             HandleMovement();
         }
-        HandleJump();
         CheckGrounded();
         ApplyGravity();
     }
@@ -212,7 +212,7 @@ public class Player : MonoBehaviour
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
     }
 
-    void ApplyGravity()
+    public void ApplyGravity()
     {
         if(rb.linearVelocity.y < -0.1f)
         {
