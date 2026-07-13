@@ -39,7 +39,8 @@ public class PlayerJumpState : PlayerState
         }
 
         float speed = RunPressed ? player.runSpeed : player.walkSpeed;
-        rb.linearVelocity = new Vector2(speed * player.facingDirection, rb.linearVelocity.y);
+        float targetSpeed = speed * MoveInput.x;
+        rb.linearVelocity = new Vector2(targetSpeed, rb.linearVelocity.y);
     }
 
     public override void Exit()
@@ -48,22 +49,3 @@ public class PlayerJumpState : PlayerState
         anim.SetBool("isJumping", false);
     }
 }
-
-
-//void HandleJump()
-//{
-//    if (jumpPressed && isGrounded)
-//    {
-//        rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
-//        jumpPressed = false;
-//        jumpReleased = false;
-//    }
-//    else if (jumpReleased)
-//    {
-//        if (rb.linearVelocity.y > 0.1f)
-//        {
-//            rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * jumpCutMultiplier);
-//        }
-//        jumpReleased = false;
-//    }
-//}

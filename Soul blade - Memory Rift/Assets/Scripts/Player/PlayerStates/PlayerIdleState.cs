@@ -8,6 +8,7 @@ public class PlayerIdleState : PlayerState
     {
         base.Enter();
         anim.SetBool("isIdle", true);
+        rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
     }
 
     public override void Update()
@@ -18,6 +19,14 @@ public class PlayerIdleState : PlayerState
         {
             JumpPressed = false;
             player.ChangeState(player.jumpState);
+        }
+        else if (Mathf.Abs(MoveInput.x) > 0.1f)
+        {
+            player.ChangeState(player.moveState);
+        }
+        else if(MoveInput.y <= -0.1f)
+        {
+            player.ChangeState(player.crouchState);
         }
     }
 

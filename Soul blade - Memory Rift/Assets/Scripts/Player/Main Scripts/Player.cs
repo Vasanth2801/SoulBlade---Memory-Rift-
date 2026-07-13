@@ -7,7 +7,8 @@ public class Player : MonoBehaviour
 
     public PlayerIdleState idleState;
     public PlayerJumpState jumpState;
-
+    public PlayerMoveState moveState;
+    public PlayerCrouchState crouchState;
 
     [Header("Movement Settings")]
     public float walkSpeed = 4f;
@@ -53,7 +54,7 @@ public class Player : MonoBehaviour
     [SerializeField] private CapsuleCollider2D playerCollider;
 
     [Header("Inputs")]
-    [SerializeField] private Vector2 moveInput;
+    public Vector2 moveInput;
     public bool jumpPressed;
     public bool jumpReleased;
     public bool runPressed;
@@ -62,6 +63,8 @@ public class Player : MonoBehaviour
     {
         idleState = new PlayerIdleState(this);
         jumpState = new PlayerJumpState(this);
+        moveState = new PlayerMoveState(this);
+        crouchState = new PlayerCrouchState(this);
     }
 
     private void Start()
@@ -74,7 +77,6 @@ public class Player : MonoBehaviour
     private void Update()
     {
         currentState.Update();
-        TryStandUp();
         if(!isSliding)
         {
             Flip();
@@ -87,10 +89,6 @@ public class Player : MonoBehaviour
     private void FixedUpdate()
     {
         currentState.FixedUpdate();
-        if (!isSliding)
-        {
-            HandleMovement();
-        }
         CheckGrounded();
         ApplyGravity();
     }
@@ -107,13 +105,6 @@ public class Player : MonoBehaviour
         currentState.Enter();
     }
 
-    void HandleMovement()
-    {
-        float currentSpeed = runPressed ? runSpeed : walkSpeed;
-        float targetSpeed = moveInput.x * currentSpeed;
-        rb.linearVelocity = new Vector2(targetSpeed, rb.linearVelocity.y);
-    }
-
     void HandleSlide()
     {
         if(isSliding)
@@ -126,7 +117,6 @@ public class Player : MonoBehaviour
             {
                 isSliding = false;
                 slideStopTimer = slideStopDuration;
-                TryStandUp();
             }
         }
 
@@ -150,35 +140,13 @@ public class Player : MonoBehaviour
         }
     }
 
-    void TryStandUp()
-    {
-        if(isSliding)
-        {
-            anim.SetBool("isCrouching", false);
-            return;
-        }
-       
-        bool shouldCrouch = moveInput.y <= -0.1f || Physics2D.OverlapCircle(headCheck.position, headCheckRadius, groundLayer);
-
-        if (!shouldCrouch)
-        {
-            SetColliderNormal();
-            anim.SetBool("isCrouching", false);
-        }
-        else
-        {
-            SetColliderSlide();
-            anim.SetBool("isCrouching", true);
-        }
-    }
-
-    void SetColliderNormal()
+    public void SetColliderNormal()
     {
         playerCollider.size = new Vector2(playerCollider.size.x, normalHieght);
         playerCollider.offset = normalOffSet;
     }
 
-    void SetColliderSlide()
+    public void SetColliderSlide()
     {
         playerCollider.size = new Vector2(playerCollider.size.x, slideHieght);
         playerCollider.offset = slideOffSet;
@@ -212,6 +180,11 @@ public class Player : MonoBehaviour
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
     }
 
+    public bool CheckCieling()
+    {
+        return Physics2D.OverlapCircle(headCheck.position, headCheckRadius, groundLayer);
+    }
+
     public void ApplyGravity()
     {
         if(rb.linearVelocity.y < -0.1f)
@@ -236,10 +209,6 @@ public class Player : MonoBehaviour
         anim.SetFloat("yVelocity", rb.linearVelocity.y);
 
         anim.SetBool("isSliding", isSliding);
-
-        bool isMoving = Mathf.Abs(moveInput.x) > 0.1f && isGrounded;
-        anim.SetBool("isWalking", isMoving && !runPressed && !isSliding && !isCrouching);
-        anim.SetBool("isRunning", isMoving && runPressed && !isSliding && !isCrouching);
     }
 
     void Flip()
