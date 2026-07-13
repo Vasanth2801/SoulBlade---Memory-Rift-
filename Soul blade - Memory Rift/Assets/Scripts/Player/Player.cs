@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -25,6 +26,15 @@ public class Player : MonoBehaviour
     private float slideTimer;
     private float slideStopTimer;
 
+    [SerializeField] private float slideHieght;
+    [SerializeField] private Vector2 slideOffSet;
+    [SerializeField] private float normalHieght;
+    [SerializeField] private Vector2 normalOffSet;
+
+    [Header("Crouch Settings")]
+    [SerializeField] private Transform headCheck;
+    [SerializeField] private float headCheckRadius = 0.2f;
+
     [Header("Ground Check Settings")]
     [SerializeField] private Transform groundCheck;
     [SerializeField] private float groundCheckRadius = 0.3f;
@@ -35,6 +45,7 @@ public class Player : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private PlayerInput player;
     [SerializeField] private Animator anim;
+    [SerializeField] private CapsuleCollider2D playerCollider;
 
     [Header("Inputs")]
     [SerializeField] private Vector2 moveInput;
@@ -49,6 +60,7 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        TryStandUp();
         if(!isSliding)
         {
             Flip();
@@ -101,10 +113,12 @@ public class Player : MonoBehaviour
             slideTimer -= Time.deltaTime;
             rb.linearVelocity = new Vector2(slideSpeed * facingDirection, rb.linearVelocity.y);
 
+            //We are done sliding 
             if(slideTimer <= 0)
             {
                 isSliding = false;
                 slideStopTimer = slideStopDuration;
+                TryStandUp();
             }
         }
 
@@ -119,12 +133,47 @@ public class Player : MonoBehaviour
             isSliding = true;
             slideInputLocked = true;
             slideTimer = slideDuration;
+            SetColliderSlide();
         }
 
         if(slideStopTimer < 0 && moveInput.y >= -0.1f)
         {
             slideInputLocked = false;
         }
+    }
+
+    void TryStandUp()
+    {
+        if(isSliding)
+        {
+            anim.SetBool("isCrouching", false);
+            return;
+        }
+       
+        bool shouldCrouch = moveInput.y <= -0.1f || Physics2D.OverlapCircle(headCheck.position, headCheckRadius, groundLayer);
+
+        if (!shouldCrouch)
+        {
+            SetColliderNormal();
+            anim.SetBool("isCrouching", false);
+        }
+        else
+        {
+            SetColliderSlide();
+            anim.SetBool("isCrouching", true);
+        }
+    }
+
+    void SetColliderNormal()
+    {
+        playerCollider.size = new Vector2(playerCollider.size.x, normalHieght);
+        playerCollider.offset = normalOffSet;
+    }
+
+    void SetColliderSlide()
+    {
+        playerCollider.size = new Vector2(playerCollider.size.x, slideHieght);
+        playerCollider.offset = slideOffSet;
     }
 
     public void OnMove(InputValue value)
@@ -173,6 +222,8 @@ public class Player : MonoBehaviour
 
     void HandleAnimations()
     {
+        bool isCrouching = anim.GetBool("isCrouching");
+
         anim.SetBool("isJumping", rb.linearVelocity.y > 0.1f);
         anim.SetBool("isGrounded", isGrounded);
         anim.SetFloat("yVelocity", rb.linearVelocity.y);
@@ -180,9 +231,9 @@ public class Player : MonoBehaviour
         anim.SetBool("isSliding", isSliding);
 
         bool isMoving = Mathf.Abs(moveInput.x) > 0.1f && isGrounded;
-        anim.SetBool("isIdle", !isMoving && isGrounded && !isSliding);
-        anim.SetBool("isWalking", isMoving && !runPressed && !isSliding);
-        anim.SetBool("isRunning", isMoving && runPressed && !isSliding);
+        anim.SetBool("isIdle", !isMoving && isGrounded && !isSliding && !isCrouching);
+        anim.SetBool("isWalking", isMoving && !runPressed && !isSliding && !isCrouching);
+        anim.SetBool("isRunning", isMoving && runPressed && !isSliding && !isCrouching);
     }
 
     void Flip()
@@ -203,5 +254,8 @@ public class Player : MonoBehaviour
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(headCheck.position, headCheckRadius);
     }
 }
