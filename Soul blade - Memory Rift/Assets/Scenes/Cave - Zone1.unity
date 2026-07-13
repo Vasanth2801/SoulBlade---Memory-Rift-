@@ -311,6 +311,7 @@ GameObject:
   - component: {fileID: 307920677}
   - component: {fileID: 307920676}
   - component: {fileID: 307920678}
+  - component: {fileID: 307920679}
   m_Layer: 0
   m_Name: sprite
   m_TagString: Untagged
@@ -415,6 +416,26 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &307920679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 307920675}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9df0ac14a7e2e14cb367f7f6340f608, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Combat
+  damage: 2
+  attackradius: 0.5
+  attackCoolDown: 1
+  attackPoint: {fileID: 708934517}
+  enemylayer:
+    serializedVersion: 2
+    m_Bits: 128
+  player: {fileID: 1338603450}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1255,12 +1276,6 @@ MonoBehaviour:
   normalOffSet: {x: -0.07, y: -0.8}
   headCheck: {fileID: 686215457}
   headCheckRadius: 0.3
-  damage: 3
-  attackradius: 0.5
-  attackPoint: {fileID: 708934517}
-  enemylayer:
-    serializedVersion: 2
-    m_Bits: 128
   groundCheck: {fileID: 94080378}
   groundCheckRadius: 0.245
   groundLayer:
@@ -1271,6 +1286,7 @@ MonoBehaviour:
   anim: {fileID: 307920678}
   player: {fileID: 1338603449}
   playerCollider: {fileID: 1338603448}
+  combat: {fileID: 307920679}
   moveInput: {x: 0, y: 0}
   jumpPressed: 0
   jumpReleased: 0

@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     public PlayerMoveState moveState;
     public PlayerCrouchState crouchState;
     public PlayerSlideState slideState;
+    public PlayerAttackState attackState;
 
     [Header("Movement Settings")]
     public float walkSpeed = 4f;
@@ -39,12 +40,6 @@ public class Player : MonoBehaviour
     [SerializeField] private Transform headCheck;
     [SerializeField] private float headCheckRadius = 0.2f;
 
-    [Header("Attack Settings")]
-    [SerializeField] private int damage;
-    [SerializeField] private float attackradius = 0.5f;
-    [SerializeField] private Transform attackPoint;
-    [SerializeField] private LayerMask enemylayer;
-
     [Header("Ground Check Settings")]
     [SerializeField] private Transform groundCheck;
     [SerializeField] private float groundCheckRadius = 0.3f;
@@ -56,6 +51,9 @@ public class Player : MonoBehaviour
     public Animator anim;
     [SerializeField] private PlayerInput player;
     [SerializeField] private CapsuleCollider2D playerCollider;
+
+    [Header("Core Component References")]
+    public Combat combat;
 
     [Header("Inputs")]
     public Vector2 moveInput;
@@ -71,6 +69,7 @@ public class Player : MonoBehaviour
         moveState = new PlayerMoveState(this);
         crouchState = new PlayerCrouchState(this);
         slideState = new PlayerSlideState(this);
+        attackState = new PlayerAttackState(this);
     }
 
     private void Start()
@@ -147,12 +146,7 @@ public class Player : MonoBehaviour
 
     public void OnAttack(InputValue value)
     {
-        Collider2D enemy = Physics2D.OverlapCircle(attackPoint.position, attackradius, enemylayer);
-
-        if(enemy != null)
-        {
-            enemy.GetComponent<Health>().ChangeHealth(-damage); 
-        }
+        attackPressed = value.isPressed;
     }
 
     void CheckGrounded()
@@ -199,6 +193,11 @@ public class Player : MonoBehaviour
         }
 
         transform.localScale = new Vector3(facingDirection, 1f, 1f);
+    }
+
+    public void AttackAnimationFinsihed()
+    {
+        currentState.AttackAnimationFinished();
     }
 
     private void OnDrawGizmos()
