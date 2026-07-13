@@ -39,6 +39,12 @@ public class Player : MonoBehaviour
     [SerializeField] private Transform headCheck;
     [SerializeField] private float headCheckRadius = 0.2f;
 
+    [Header("Attack Settings")]
+    [SerializeField] private int damage;
+    [SerializeField] private float attackradius = 0.5f;
+    [SerializeField] private Transform attackPoint;
+    [SerializeField] private LayerMask enemylayer;
+
     [Header("Ground Check Settings")]
     [SerializeField] private Transform groundCheck;
     [SerializeField] private float groundCheckRadius = 0.3f;
@@ -47,8 +53,8 @@ public class Player : MonoBehaviour
  
     [Header("Unity Components References")]
     public Rigidbody2D rb;
-    [SerializeField] private PlayerInput player;
     public Animator anim;
+    [SerializeField] private PlayerInput player;
     [SerializeField] private CapsuleCollider2D playerCollider;
 
     [Header("Inputs")]
@@ -56,6 +62,7 @@ public class Player : MonoBehaviour
     public bool jumpPressed;
     public bool jumpReleased;
     public bool runPressed;
+    public bool attackPressed;
 
     private void Awake()
     {
@@ -136,6 +143,16 @@ public class Player : MonoBehaviour
     public void OnRun(InputValue value)
     {
         runPressed = value.isPressed;
+    }
+
+    public void OnAttack(InputValue value)
+    {
+        Collider2D enemy = Physics2D.OverlapCircle(attackPoint.position, attackradius, enemylayer);
+
+        if(enemy != null)
+        {
+            enemy.GetComponent<Health>().ChangeHealth(-damage); 
+        }
     }
 
     void CheckGrounded()

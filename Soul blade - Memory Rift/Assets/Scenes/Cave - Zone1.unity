@@ -717,6 +717,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1338603446}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &708934516
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 708934517}
+  m_Layer: 0
+  m_Name: AttackPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &708934517
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 708934516}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.72, y: -0.74, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1338603446}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &745212808
 GameObject:
   m_ObjectHideFlags: 0
@@ -1098,6 +1129,7 @@ Transform:
   - {fileID: 307920677}
   - {fileID: 94080378}
   - {fileID: 686215457}
+  - {fileID: 708934517}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &1338603447
@@ -1223,6 +1255,12 @@ MonoBehaviour:
   normalOffSet: {x: -0.07, y: -0.8}
   headCheck: {fileID: 686215457}
   headCheckRadius: 0.3
+  damage: 3
+  attackradius: 0.5
+  attackPoint: {fileID: 708934517}
+  enemylayer:
+    serializedVersion: 2
+    m_Bits: 128
   groundCheck: {fileID: 94080378}
   groundCheckRadius: 0.245
   groundLayer:
@@ -1230,13 +1268,14 @@ MonoBehaviour:
     m_Bits: 64
   isGrounded: 0
   rb: {fileID: 1338603447}
-  player: {fileID: 1338603449}
   anim: {fileID: 307920678}
+  player: {fileID: 1338603449}
   playerCollider: {fileID: 1338603448}
   moveInput: {x: 0, y: 0}
   jumpPressed: 0
   jumpReleased: 0
   runPressed: 0
+  attackPressed: 0
 --- !u!1 &1507505544
 GameObject:
   m_ObjectHideFlags: 0
@@ -6407,7 +6446,10 @@ GameObject:
   - component: {fileID: 1848904625}
   - component: {fileID: 1848904624}
   - component: {fileID: 1848904623}
-  m_Layer: 0
+  - component: {fileID: 1848904626}
+  - component: {fileID: 1848904627}
+  - component: {fileID: 1848904628}
+  m_Layer: 7
   m_Name: 'Training Dummy '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6511,6 +6553,71 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!70 &1848904626
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1848904622}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0.04083991, y: -0.54317105}
+  m_Size: {x: 0.54960394, y: 1.9136579}
+  m_Direction: 0
+--- !u!114 &1848904627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1848904622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4f5bf742e7a41e499a0603badd8057a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Health
+  currentHealth: 0
+  maxHealth: 10
+--- !u!114 &1848904628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1848904622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dabc6046adc78f4685093546d50820a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Enemy
+  anim: {fileID: 1848904623}
+  health: {fileID: 1848904627}
 --- !u!1 &2143703299
 GameObject:
   m_ObjectHideFlags: 0
