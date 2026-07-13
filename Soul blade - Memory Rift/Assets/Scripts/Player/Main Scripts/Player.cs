@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     public PlayerJumpState jumpState;
     public PlayerMoveState moveState;
     public PlayerCrouchState crouchState;
+    public PlayerSlideState slideState;
 
     [Header("Movement Settings")]
     public float walkSpeed = 4f;
@@ -23,14 +24,11 @@ public class Player : MonoBehaviour
     [SerializeField] private float fallGravity;
 
     [Header("Slide Settings")]
-    [SerializeField] private float slideDuration = 0.6f;
-    [SerializeField] private float slideSpeed = 12f;
-    [SerializeField] private float slideStopDuration = 0.15f;
+    public float slideDuration = 0.6f;
+    public float slideSpeed = 12f;
+    public float slideStopDuration = 0.15f;
 
     private bool isSliding;
-    private bool slideInputLocked;
-    private float slideTimer;
-    private float slideStopTimer;
 
     [SerializeField] private float slideHieght;
     [SerializeField] private Vector2 slideOffSet;
@@ -65,6 +63,7 @@ public class Player : MonoBehaviour
         jumpState = new PlayerJumpState(this);
         moveState = new PlayerMoveState(this);
         crouchState = new PlayerCrouchState(this);
+        slideState = new PlayerSlideState(this);
     }
 
     private void Start()
@@ -83,7 +82,6 @@ public class Player : MonoBehaviour
         }
       
         HandleAnimations();
-        HandleSlide();
     }
 
     private void FixedUpdate()
@@ -103,41 +101,6 @@ public class Player : MonoBehaviour
         currentState = newState;
 
         currentState.Enter();
-    }
-
-    void HandleSlide()
-    {
-        if(isSliding)
-        {
-            slideTimer -= Time.deltaTime;
-            rb.linearVelocity = new Vector2(slideSpeed * facingDirection, rb.linearVelocity.y);
-
-            //We are done sliding 
-            if(slideTimer <= 0)
-            {
-                isSliding = false;
-                slideStopTimer = slideStopDuration;
-            }
-        }
-
-        if(slideStopTimer > 0)
-        {
-            slideStopTimer -= Time.deltaTime;
-            rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
-        }
-
-        if(isGrounded && runPressed && moveInput.y < -0.1f && !isSliding && !slideInputLocked)
-        {
-            isSliding = true;
-            slideInputLocked = true;
-            slideTimer = slideDuration;
-            SetColliderSlide();
-        }
-
-        if(slideStopTimer < 0 && moveInput.y >= -0.1f)
-        {
-            slideInputLocked = false;
-        }
     }
 
     public void SetColliderNormal()
@@ -203,12 +166,8 @@ public class Player : MonoBehaviour
 
     void HandleAnimations()
     {
-        bool isCrouching = anim.GetBool("isCrouching");
-
         anim.SetBool("isGrounded", isGrounded);
         anim.SetFloat("yVelocity", rb.linearVelocity.y);
-
-        anim.SetBool("isSliding", isSliding);
     }
 
     void Flip()
