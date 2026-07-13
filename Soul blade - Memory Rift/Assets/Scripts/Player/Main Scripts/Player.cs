@@ -4,6 +4,12 @@ using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
+    public PlayerState currentState;
+
+    public PlayerIdleState idleState;
+    public PlayerJumpState jumpState;
+
+
     [Header("Movement Settings")]
     [SerializeField] private float walkSpeed = 4f;
     [SerializeField] private float runSpeed = 8f;
@@ -42,20 +48,28 @@ public class Player : MonoBehaviour
     [SerializeField] private bool isGrounded;
  
     [Header("Unity Components References")]
-    [SerializeField] private Rigidbody2D rb;
+    public Rigidbody2D rb;
     [SerializeField] private PlayerInput player;
-    [SerializeField] private Animator anim;
+    public Animator anim;
     [SerializeField] private CapsuleCollider2D playerCollider;
 
     [Header("Inputs")]
     [SerializeField] private Vector2 moveInput;
-    [SerializeField] private bool jumpPressed;
+    public bool jumpPressed;
     [SerializeField] private bool jumpReleased;
     [SerializeField] private bool runPressed;
+
+    private void Awake()
+    {
+        idleState = new PlayerIdleState(this);
+        jumpState = new PlayerJumpState(this);
+    }
 
     private void Start()
     {
         rb.gravityScale = normalGravity;
+
+        ChangeState(idleState);
     }
 
     private void Update()
@@ -81,29 +95,23 @@ public class Player : MonoBehaviour
         ApplyGravity();
     }
 
+    public void ChangeState(PlayerState newState)
+    {
+        if(currentState != null)
+        {
+            currentState.Exit();
+        }
+
+        currentState = newState;
+
+        currentState.Enter();
+    }
+
     void HandleMovement()
     {
         float currentSpeed = runPressed ? runSpeed : walkSpeed;
         float targetSpeed = moveInput.x * currentSpeed;
         rb.linearVelocity = new Vector2(targetSpeed, rb.linearVelocity.y);
-    }
-
-    void HandleJump()
-    {
-        if(jumpPressed && isGrounded)
-        {
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
-            jumpPressed = false;
-            jumpReleased = false;
-        }
-        else if(jumpReleased)
-        {
-            if (rb.linearVelocity.y > 0.1f)
-            {
-                rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * jumpCutMultiplier);
-            }
-            jumpReleased = false;
-        }
     }
 
     void HandleSlide()
@@ -224,14 +232,12 @@ public class Player : MonoBehaviour
     {
         bool isCrouching = anim.GetBool("isCrouching");
 
-        anim.SetBool("isJumping", rb.linearVelocity.y > 0.1f);
         anim.SetBool("isGrounded", isGrounded);
         anim.SetFloat("yVelocity", rb.linearVelocity.y);
 
         anim.SetBool("isSliding", isSliding);
 
         bool isMoving = Mathf.Abs(moveInput.x) > 0.1f && isGrounded;
-        anim.SetBool("isIdle", !isMoving && isGrounded && !isSliding && !isCrouching);
         anim.SetBool("isWalking", isMoving && !runPressed && !isSliding && !isCrouching);
         anim.SetBool("isRunning", isMoving && runPressed && !isSliding && !isCrouching);
     }
