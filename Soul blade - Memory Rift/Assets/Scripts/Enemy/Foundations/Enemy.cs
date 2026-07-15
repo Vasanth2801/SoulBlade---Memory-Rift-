@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    public EnemyConfig Config;
    public Rigidbody2D RB { get; private set; }
     public StateMachine StateMachine { get; private set; }
 
@@ -9,6 +10,11 @@ public class Enemy : MonoBehaviour
     {
         RB = GetComponent<Rigidbody2D>();
         StateMachine = new StateMachine();
+    }
+
+    private void Start()
+    {
+        StateMachine.Initialize(new PatrolState(this));
     }
 
     private void Update() => StateMachine.CurrentState?.Update();
