@@ -2,10 +2,23 @@ using UnityEngine;
 
 public class PatrolState : State
 {
+    protected override string AnimBoolName => "isWalking";
     public PatrolState(Enemy enemy) : base(enemy) { }
 
     public override void FixedUpdate()
     {
-        rb.linearVelocity = new Vector2(config.patrolSpeed , rb.linearVelocity.y);
+        if(senses.GetChaseTarget())
+        {
+            stateMachine.ChangeState(new ChaseState(enemy));
+            return;
+        }
+
+        if (senses.IsHittingWall() || senses.IsAtCliff())
+        {
+            enemy.Flip();
+            return;
+        }
+
+        rb.linearVelocity = new Vector2(config.patrolSpeed * enemy.FacingDirection, rb.linearVelocity.y);
     }
 }

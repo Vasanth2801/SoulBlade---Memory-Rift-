@@ -13,7 +13,15 @@ MonoBehaviour:
   m_Name: Kobold
   m_EditorClassIdentifier: Assembly-CSharp::EnemyConfig
   patrolSpeed: 5
-  grouchCheckDitance: 0.7
+  grouchCheckDistance: 0.7
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+  wallCheckDistance: 0.7
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  chaseRange: 5
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 8
