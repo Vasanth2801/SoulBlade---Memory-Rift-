@@ -2,21 +2,15 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] private Animator anim;
-    [SerializeField] private Health health;
+   public Rigidbody2D RB { get; private set; }
+    public StateMachine StateMachine { get; private set; }
 
-    private void OnEnable()
+   private void Awake()
     {
-        health.onDamaged += HandleDamage;
+        RB = GetComponent<Rigidbody2D>();
+        StateMachine = new StateMachine();
     }
 
-    private void OnDisable()
-    {
-        health.onDamaged -= HandleDamage;
-    }
-
-    void HandleDamage()
-    {
-        anim.SetTrigger("Hit");
-    }
+    private void Update() => StateMachine.CurrentState?.Update();
+    private void FixedUpdate() => StateMachine.CurrentState?.FixedUpdate();
 }

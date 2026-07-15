@@ -1,3 +1,4 @@
+using System;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 
@@ -12,6 +13,7 @@ public class Combat : MonoBehaviour
     [SerializeField] private LayerMask enemylayer;
 
     [SerializeField] private Player player;
+    [SerializeField] private Animator hitFX;
 
     public bool CanAttack => Time.time >= nextAttackTime;
     private float nextAttackTime;
@@ -34,6 +36,7 @@ public class Combat : MonoBehaviour
 
         if (enemy != null)
         {
+            hitFX.Play("Hit");
             enemy.GetComponent<Health>().ChangeHealth(-damage);
         }
     }

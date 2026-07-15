@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: f1059a81fe0b91b4f818faa0417a1d7f
+guid: 86331360ab0ba284eb09e8681cf8dee3
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6348679789710473463
-    second: HitFX4_0
+      213: 4723107735738678597
+    second: Idle_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -126,23 +126,133 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: HitFX4_0
+      name: Idle_Head
       rect:
         serializedVersion: 2
-        x: 2
-        y: 8
-        width: 62
-        height: 49
+        x: 20
+        y: 21
+        width: 8
+        height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9070b953e55f4e7a0800000000000000
-      internalID: -6348679789710473463
+      spriteID: 54d7a982679db8140800000000000000
+      internalID: 4723107735738678597
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Idle Pieces_Shield
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 15
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d1c41766016b65c4b8009cf14873f9a9
+      internalID: 369601730
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Idle Pieces_Sword
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 17
+        width: 12
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56b1f8253a4bef94da962bdf6b03b014
+      internalID: 606342781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Idle Pieces_Body
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 10
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e2b5e7052bf4244ea9d2ca859951de8
+      internalID: 943955527
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Idle Pieces_Leg
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 1
+        width: 11
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1cf6f490a01122e4589c7da4342a87ec
+      internalID: -1579679931
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Idle Pieces_0
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 1
+        width: 11
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9de344ebbff11ca499c5cf7047f814a3
+      internalID: 856813575
       vertices: []
       indices: 
       edges: []
@@ -161,7 +271,12 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      HitFX4_0: -6348679789710473463
+      Idle Pieces_0: 856813575
+      Idle Pieces_Body: 943955527
+      Idle Pieces_Leg: -1579679931
+      Idle Pieces_Shield: 369601730
+      Idle Pieces_Sword: 606342781
+      Idle_Head: 4723107735738678597
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
