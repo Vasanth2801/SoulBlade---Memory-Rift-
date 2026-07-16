@@ -313,6 +313,7 @@ GameObject:
   - component: {fileID: 307920678}
   - component: {fileID: 307920679}
   - component: {fileID: 307920680}
+  - component: {fileID: 307920681}
   m_Layer: 3
   m_Name: sprite
   m_TagString: Untagged
@@ -453,6 +454,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Health
   currentHealth: 0
   maxHealth: 10
+--- !u!114 &307920681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 307920675}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c89e4465868149a4890b5240c4b95333, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Damage
+  health: {fileID: 307920680}
+  player: {fileID: 1338603450}
+  knockbackForce: 20
+  knockbackDuration: 0.3
 --- !u!1 &447092863
 GameObject:
   m_ObjectHideFlags: 0
@@ -478,7 +495,7 @@ Transform:
   m_GameObject: {fileID: 447092863}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.98, y: -1.17, z: 0}
+  m_LocalPosition: {x: 0.98, y: -0.42, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -999,8 +1016,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4f5bf742e7a41e499a0603badd8057a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Health
-  currentHealth: 16
-  maxHealth: 16
+  currentHealth: 3
+  maxHealth: 3
 --- !u!114 &685415755
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1015,10 +1032,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Enemy_Damage
   health: {fileID: 685415754}
   enemy: {fileID: 685415751}
-  deathParts: []
-  spawnForce: 5
-  torque: 5
-  lifeTime: 2
+  deathParts:
+  - {fileID: 7229535911940774950, guid: 9bc4048f9fb777748a4db23ad2e5bf4b, type: 3}
+  - {fileID: 8674154249234446971, guid: 915f1f6a1da2b3540bc2e5462c076a97, type: 3}
+  - {fileID: 4543991557303621274, guid: 3ab900c8659184f4682f4f2d73a3d290, type: 3}
+  - {fileID: 4483352436367828117, guid: bfcda594db278c14d97ef40224eb233e, type: 3}
+  spawnForce: 20
+  torque: 10
+  lifeTime: 3
 --- !u!1 &686215456
 GameObject:
   m_ObjectHideFlags: 0
@@ -1630,6 +1651,7 @@ MonoBehaviour:
   player: {fileID: 1338603449}
   playerCollider: {fileID: 1338603448}
   combat: {fileID: 307920679}
+  damage: {fileID: 307920681}
   moveInput: {x: 0, y: 0}
   jumpPressed: 0
   jumpReleased: 0

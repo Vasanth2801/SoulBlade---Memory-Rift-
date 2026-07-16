@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     public PlayerCrouchState crouchState;
     public PlayerSlideState slideState;
     public PlayerAttackState attackState;
+    public PlayerDamagedState damagedState;
 
     [Header("Movement Settings")]
     public float walkSpeed = 4f;
@@ -54,6 +55,7 @@ public class Player : MonoBehaviour
 
     [Header("Core Component References")]
     public Combat combat;
+    public Damage damage;
 
     [Header("Inputs")]
     public Vector2 moveInput;
@@ -70,6 +72,7 @@ public class Player : MonoBehaviour
         crouchState = new PlayerCrouchState(this);
         slideState = new PlayerSlideState(this);
         attackState = new PlayerAttackState(this);
+        damagedState = new PlayerDamagedState(this);
     }
 
     private void Start()
