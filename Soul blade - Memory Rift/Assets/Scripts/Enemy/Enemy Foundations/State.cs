@@ -1,14 +1,15 @@
 using UnityEngine;
 
-public abstract class State
+public class State 
 {
+    protected virtual string AnimBoolName => null;
+
     protected Rigidbody2D rb;
-    protected Animator anim;
     protected EnemyConfig config;
     protected EnemySenses senses;
     protected Enemy enemy;
+    protected Animator anim;
     protected StateMachine stateMachine;
-    protected virtual string AnimBoolName => null;
 
     protected State(Enemy enemy)
     {
@@ -18,8 +19,7 @@ public abstract class State
         this.enemy = enemy;
         anim = enemy.Anim;
         stateMachine = enemy.StateMachine;
-   }
-
+    }
 
     public virtual void Enter() 
     {

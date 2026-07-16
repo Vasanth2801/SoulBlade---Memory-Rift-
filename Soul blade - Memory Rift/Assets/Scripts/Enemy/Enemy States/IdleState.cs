@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class IdleState : State
 {
-    public IdleState(Enemy enemy) : base(enemy) { }
-
     private Transform target;
     protected override string AnimBoolName => "isIdling";
+
+    public IdleState(Enemy enemy) : base(enemy) { }
 
     public override void Enter()
     {
@@ -15,8 +15,8 @@ public class IdleState : State
 
     public override void FixedUpdate()
     {
-        // 1. Check for target 
-        target = senses.GetChaseTarget();
+        //1. Check for the target 
+        target = senses.GetTarget();
 
         if (!target)
         {
@@ -26,22 +26,23 @@ public class IdleState : State
 
         enemy.FaceTarget(target);
 
-        //2. Check if we have reached our target 
-        float distance = Mathf.Abs(target.position.x - enemy.transform.position.x);
-        if (distance <= config.turnThreshold)
+        // 2. Check if we reached our target 
+        float distance = target.position.x - enemy.transform.position.x;
+        // use absolute horizontal distance so this works when target is left or right
+        if (Mathf.Abs(distance) <= config.turnThershold)
         {
             rb.linearVelocity = Vector2.zero;
             return;
         }
 
-        //3. Check for Obstacles 
+        // 3. Check for obsctales 
         if (senses.IsHittingWall() || senses.IsAtCliff())
         {
             rb.linearVelocity = Vector2.zero;
             return;
         }
-
-        //4.We have a target, Chase it 
+       
+        //4. Change the State to the next thing 
         stateMachine.ChangeState(new ChaseState(enemy));
     }
 }

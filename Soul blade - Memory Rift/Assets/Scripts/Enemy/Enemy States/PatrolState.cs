@@ -7,18 +7,17 @@ public class PatrolState : State
 
     public override void FixedUpdate()
     {
-        if(senses.GetChaseTarget())
+        if(senses.GetTarget())
         {
             stateMachine.ChangeState(new ChaseState(enemy));
             return;
         }
 
-        if (senses.IsHittingWall() || senses.IsAtCliff())
+        if(senses.IsHittingWall() || senses.IsAtCliff())
         {
             enemy.Flip();
             return;
         }
-
         rb.linearVelocity = new Vector2(config.patrolSpeed * enemy.FacingDirection, rb.linearVelocity.y);
     }
 }

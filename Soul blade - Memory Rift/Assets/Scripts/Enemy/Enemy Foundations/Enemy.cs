@@ -4,16 +4,15 @@ public class Enemy : MonoBehaviour
 {
     //Variables
     public int FacingDirection { get; private set; } = 1;
-  
 
-    // Components
+    //Components
     public EnemyConfig Config;
-    public EnemySenses Senses;
-   public Rigidbody2D RB { get; private set; }
-   public Animator Anim {  get; private set; }
-   public StateMachine StateMachine { get; private set; }
+    public Rigidbody2D RB {  get; private set; }
+    public Animator Anim {  get; private set; }
+    public EnemySenses Senses { get; private set; }
+    public StateMachine StateMachine { get; private set; }
 
-   private void Awake()
+    private void Awake()
     {
         RB = GetComponent<Rigidbody2D>();
         StateMachine = new StateMachine();
@@ -34,6 +33,7 @@ public class Enemy : MonoBehaviour
         float offSet = target.position.x - transform.position.x;
 
         int direction = offSet > 0 ? 1 : -1;
+
         if(direction != FacingDirection)
         {
             Flip();

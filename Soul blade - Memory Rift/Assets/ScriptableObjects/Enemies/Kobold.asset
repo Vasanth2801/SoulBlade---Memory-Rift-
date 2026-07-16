@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d2eb1cb512717746bbc5b2be935c67e, type: 3}
+  m_Script: {fileID: 11500000, guid: fc97b62d011643c48baa508de079ebb8, type: 3}
   m_Name: Kobold
   m_EditorClassIdentifier: Assembly-CSharp::EnemyConfig
-  patrolSpeed: 5
-  grouchCheckDistance: 0.7
+  patrolSpeed: 3
+  groundCheckDistance: 0.7
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -21,7 +21,8 @@ MonoBehaviour:
   wallLayer:
     serializedVersion: 2
     m_Bits: 64
-  chaseRange: 5
+  chaseSpeed: 7
+  chaseRange: 7
   targetLayer:
     serializedVersion: 2
     m_Bits: 8

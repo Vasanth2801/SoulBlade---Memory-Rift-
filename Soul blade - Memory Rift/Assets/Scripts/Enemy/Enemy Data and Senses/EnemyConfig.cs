@@ -1,23 +1,22 @@
 using UnityEngine;
-using UnityEngine.Rendering;
 
 [CreateAssetMenu(menuName = "Enemy/EnemyConfig")]
 public class EnemyConfig : ScriptableObject
 {
     [Header("General Settings")]
-    public float turnThreshold = 0.5f;
+    public float turnThershold = 0.5f;
 
-    [Header("Patrol Settings")]
-    public float patrolSpeed;
-    public float grouchCheckDistance = 0.7f;
+    [Header("Patrol Speed")]
+    public float patrolSpeed = 5f;
+    public float groundCheckDistance = 0.7f;
     public LayerMask groundLayer;
 
-    [Header("Wall Settings")]
+    [Header("Wall Check Settings")]
     public float wallCheckDistance = 0.7f;
     public LayerMask wallLayer;
 
-    [Header("Chase Range")]
-    public float chaseSpeed = 4f;
-    public float chaseRange = 5f;
+    [Header("Chase Settings")]
+    public float chaseSpeed = 7f;
+    public float chaseRange = 7f;
     public LayerMask targetLayer;
 }
