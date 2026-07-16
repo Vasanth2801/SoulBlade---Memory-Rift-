@@ -10,6 +10,7 @@ public class State
     protected Enemy enemy;
     protected Animator anim;
     protected StateMachine stateMachine;
+    protected Enemy_Combat combat;
 
     protected State(Enemy enemy)
     {
@@ -19,6 +20,7 @@ public class State
         this.enemy = enemy;
         anim = enemy.Anim;
         stateMachine = enemy.StateMachine;
+        combat = enemy.Combat;
     }
 
     public virtual void Enter() 
@@ -30,6 +32,7 @@ public class State
     }
     public virtual void Update() { }
     public virtual void FixedUpdate() { }
+    public virtual void OnAnimationFinished() { } 
     public virtual void Exit() 
     {
         if (!string.IsNullOrEmpty(AnimBoolName))

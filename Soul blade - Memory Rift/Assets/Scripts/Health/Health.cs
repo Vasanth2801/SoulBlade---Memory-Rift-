@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    public event Action onDamaged;
+    public event Action<Vector2> onDamaged;
     public event Action onDeath;
 
     [SerializeField] private int currentHealth;
@@ -14,7 +14,7 @@ public class Health : MonoBehaviour
         currentHealth = maxHealth;
     }
 
-    public void ChangeHealth(int amount)
+    public void ChangeHealth(int amount, Vector2 sourcePosition)
     {
         currentHealth += amount;
 
@@ -28,7 +28,7 @@ public class Health : MonoBehaviour
         }
         else if(amount <= 0)
         {
-            onDamaged?.Invoke();
+            onDamaged?.Invoke(sourcePosition);
         }
     }
 }

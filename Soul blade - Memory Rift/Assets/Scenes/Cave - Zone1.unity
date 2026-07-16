@@ -312,6 +312,7 @@ GameObject:
   - component: {fileID: 307920676}
   - component: {fileID: 307920678}
   - component: {fileID: 307920679}
+  - component: {fileID: 307920680}
   m_Layer: 3
   m_Name: sprite
   m_TagString: Untagged
@@ -438,6 +439,20 @@ MonoBehaviour:
     m_Bits: 128
   player: {fileID: 1338603450}
   hitFX: {fileID: 1854304539}
+--- !u!114 &307920680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 307920675}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4f5bf742e7a41e499a0603badd8057a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Health
+  currentHealth: 0
+  maxHealth: 10
 --- !u!1 &447092863
 GameObject:
   m_ObjectHideFlags: 0
@@ -755,6 +770,9 @@ GameObject:
   - component: {fileID: 685415750}
   - component: {fileID: 685415751}
   - component: {fileID: 685415752}
+  - component: {fileID: 685415753}
+  - component: {fileID: 685415755}
+  - component: {fileID: 685415754}
   m_Layer: 7
   m_Name: Kobold Enemy
   m_TagString: Untagged
@@ -956,6 +974,51 @@ MonoBehaviour:
   groundCheck: {fileID: 1333483459}
   wallCheck: {fileID: 1512376032}
   attackPoint: {fileID: 447092864}
+--- !u!114 &685415753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 685415743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1754a4b38eb7d394c8e9ebbc9a32ae18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Enemy_Combat
+  attackPoint: {fileID: 447092864}
+--- !u!114 &685415754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 685415743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4f5bf742e7a41e499a0603badd8057a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Health
+  currentHealth: 16
+  maxHealth: 16
+--- !u!114 &685415755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 685415743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dabc6046adc78f4685093546d50820a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Enemy_Damage
+  health: {fileID: 685415754}
+  enemy: {fileID: 685415751}
+  deathParts: []
+  spawnForce: 5
+  torque: 5
+  lifeTime: 2
 --- !u!1 &686215456
 GameObject:
   m_ObjectHideFlags: 0

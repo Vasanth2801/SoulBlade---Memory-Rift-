@@ -20,7 +20,14 @@ public class ChaseState : State
 
         enemy.FaceTarget(target);
 
-        // 2. Check if we have reached our target 
+        //2. Check if we can attack
+        if(senses.IsInMeleeRange(target) && combat.CanMeleeAttack())
+        {
+            stateMachine.ChangeState(new MeleeAttackState(enemy));
+            return;
+        }
+
+        // 3. Check if we have reached our target 
         float distance = target.position.x - enemy.transform.position.x;
         if (Mathf.Abs(distance) <= config.turnThershold)
         {
@@ -28,14 +35,14 @@ public class ChaseState : State
             return;
         }
 
-        //3. Check for obstacles 
+        //4. Check for obstacles 
         if(senses.IsHittingWall() || senses.IsAtCliff())
         {
             stateMachine.ChangeState(new IdleState(enemy));
             return;
         }
 
-        // 4. Move towards the target 
+        // 5. Move towards the target 
         rb.linearVelocity = new Vector2(config.chaseSpeed * enemy.FacingDirection,rb.linearVelocity.y);
     }
 

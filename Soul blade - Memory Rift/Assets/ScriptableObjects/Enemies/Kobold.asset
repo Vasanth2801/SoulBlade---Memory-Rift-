@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc97b62d011643c48baa508de079ebb8, type: 3}
   m_Name: Kobold
   m_EditorClassIdentifier: Assembly-CSharp::EnemyConfig
+  turnThershold: 1.15
   patrolSpeed: 3
   groundCheckDistance: 0.7
   groundLayer:
@@ -26,3 +27,6 @@ MonoBehaviour:
   targetLayer:
     serializedVersion: 2
     m_Bits: 8
+  meleeRange: 1.15
+  meleeDamage: 2
+  meleeCooldown: 1

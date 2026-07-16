@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class Enemy_Damage : MonoBehaviour
 {
-    [SerializeField] private Animator anim;
     [SerializeField] private Health health;
+    [SerializeField] private Enemy enemy;
 
     [SerializeField] private GameObject[] deathParts;
     [SerializeField] private float spawnForce = 5f;
@@ -22,9 +22,12 @@ public class Enemy_Damage : MonoBehaviour
         health.onDeath += HandleDeath;
     }
 
-    void HandleDamage()
+    void HandleDamage(Vector2 sourcePosition)
     {
-        anim.SetTrigger("Hit");
+        int knockbackDirection = 0;
+        knockbackDirection = transform.position.x > sourcePosition.x ? 1 : -1; 
+
+        enemy.StateMachine.ChangeState(new DamagedState(enemy, knockbackDirection));
     }
 
     void HandleDeath()

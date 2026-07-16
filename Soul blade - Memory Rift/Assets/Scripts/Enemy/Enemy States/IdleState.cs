@@ -26,23 +26,29 @@ public class IdleState : State
 
         enemy.FaceTarget(target);
 
-        // 2. Check if we reached our target 
+        //2. Check if we can attack
+        if (senses.IsInMeleeRange(target) && combat.CanMeleeAttack())
+        {
+            stateMachine.ChangeState(new MeleeAttackState(enemy));
+            return;
+        }
+
+        // 3. Check if we reached our target 
         float distance = target.position.x - enemy.transform.position.x;
-        // use absolute horizontal distance so this works when target is left or right
         if (Mathf.Abs(distance) <= config.turnThershold)
         {
             rb.linearVelocity = Vector2.zero;
             return;
         }
 
-        // 3. Check for obsctales 
+        // 4. Check for obsctales 
         if (senses.IsHittingWall() || senses.IsAtCliff())
         {
             rb.linearVelocity = Vector2.zero;
             return;
         }
        
-        //4. Change the State to the next thing 
+        //5. Change the State to the next thing 
         stateMachine.ChangeState(new ChaseState(enemy));
     }
 }
