@@ -30,7 +30,7 @@ public class Enemy_Damage : MonoBehaviour
         enemy.StateMachine.ChangeState(new DamagedState(enemy, knockbackDirection));
     }
 
-    void HandleDeath()
+    void HandleDeath(Vector2 soucePosition)
     {
         foreach(GameObject prefab in deathParts)
         {

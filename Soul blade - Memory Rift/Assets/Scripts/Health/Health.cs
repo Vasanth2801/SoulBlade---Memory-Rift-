@@ -4,7 +4,7 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     public event Action<Vector2> onDamaged;
-    public event Action onDeath;
+    public event Action<Vector2> onDeath;
 
     [SerializeField] private int currentHealth;
     [SerializeField] private int maxHealth;
@@ -24,7 +24,7 @@ public class Health : MonoBehaviour
         }
         else if (currentHealth <= 0)
         {
-            onDeath?.Invoke();
+            onDeath?.Invoke(sourcePosition);
         }
         else if(amount <= 0)
         {

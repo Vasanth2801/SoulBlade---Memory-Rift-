@@ -27,6 +27,12 @@ public class EnemySenses : MonoBehaviour
             return null;
         }
 
+        Player player = hit.GetComponent<Player>();
+        if(player.currentState == player.deathState)
+        {
+            return null;
+        }
+
         return hit.transform;
     }
 

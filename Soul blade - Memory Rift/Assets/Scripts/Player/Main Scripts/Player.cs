@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     public PlayerSlideState slideState;
     public PlayerAttackState attackState;
     public PlayerDamagedState damagedState;
+    public PlayerDeathState deathState;
 
     [Header("Movement Settings")]
     public float walkSpeed = 4f;
@@ -73,6 +74,7 @@ public class Player : MonoBehaviour
         slideState = new PlayerSlideState(this);
         attackState = new PlayerAttackState(this);
         damagedState = new PlayerDamagedState(this);
+        deathState = new PlayerDeathState(this);
     }
 
     private void Start()
@@ -186,6 +188,11 @@ public class Player : MonoBehaviour
 
     void Flip()
     {
+        if(currentState == deathState)
+        {
+            return;
+        }
+
         if(moveInput.x > 0.1f)
         {
             facingDirection = 1;
