@@ -58,6 +58,17 @@ public class EnemySenses : MonoBehaviour
         return distance <= config.meleeRange;
     }
 
+    public bool IsInShootingRange(Transform target)
+    {
+        if (!target)
+        {
+            return false;
+        }
+
+        float distance = Vector2.Distance(target.position, attackPoint.position);
+        return distance <= config.rangedRange;
+    }
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.white;
@@ -75,5 +86,8 @@ public class EnemySenses : MonoBehaviour
 
         Gizmos.color = Color.aquamarine;
         Gizmos.DrawWireSphere(attackPoint.position, config.meleeRange);
+
+        Gizmos.color = Color.orangeRed;
+        Gizmos.DrawWireSphere(attackPoint.position, config.rangedRange);
     }
 }

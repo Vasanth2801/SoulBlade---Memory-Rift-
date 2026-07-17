@@ -20,10 +20,19 @@ public class EnemyConfig : ScriptableObject
     public float chaseRange = 7f;
     public LayerMask targetLayer;
 
-    [Header("Attack Settings")]
+    [Header("Melee Attack Settings")]
     public float meleeRange = 1.15f;
     public int meleeDamage = 2;
     public float meleeCooldown = 1f;
+
+    [Header("Ranged Attack Settings")]
+    public float rangedRange = 5f;
+    public int rangedDamage = 1;
+    public float rangedCooldown = 1.15f;
+    public GameObject projectilePrefab;
+    public float projectileSpeed = 12f;
+    public float projectileLifeTime = 3f;
+
 
     [Header("Damaged")]
     public float knockbackDuration = 0.3f;

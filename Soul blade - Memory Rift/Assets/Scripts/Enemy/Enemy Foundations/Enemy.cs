@@ -4,6 +4,7 @@ public class Enemy : MonoBehaviour
 {
     //Variables
     public int FacingDirection { get; private set; } = 1;
+    public Transform CurrentTarget {  get; set; }
 
     //Components
     public EnemyConfig Config;
