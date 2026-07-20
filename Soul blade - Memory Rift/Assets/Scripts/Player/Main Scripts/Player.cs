@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     public PlayerAttackState attackState;
     public PlayerDamagedState damagedState;
     public PlayerDeathState deathState;
+    public PlayerSpellCastState spellCastState;
 
     [Header("Movement Settings")]
     public float walkSpeed = 4f;
@@ -64,6 +65,7 @@ public class Player : MonoBehaviour
     public bool jumpReleased;
     public bool runPressed;
     public bool attackPressed;
+    public bool spellCastPressed;
 
     private void Awake()
     {
@@ -75,6 +77,7 @@ public class Player : MonoBehaviour
         attackState = new PlayerAttackState(this);
         damagedState = new PlayerDamagedState(this);
         deathState = new PlayerDeathState(this);
+        spellCastState = new PlayerSpellCastState(this);
     }
 
     private void Start()
@@ -154,6 +157,11 @@ public class Player : MonoBehaviour
         attackPressed = value.isPressed;
     }
 
+    public void OnSpellCast(InputValue value)
+    {
+        spellCastPressed = value.isPressed;
+    }
+
     void CheckGrounded()
     {
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
@@ -205,9 +213,9 @@ public class Player : MonoBehaviour
         transform.localScale = new Vector3(facingDirection, 1f, 1f);
     }
 
-    public void AttackAnimationFinsihed()
+    public void AnimationFinsihed()
     {
-        currentState.AttackAnimationFinished();
+        currentState.AnimationFinished();
     }
 
     private void OnDrawGizmos()

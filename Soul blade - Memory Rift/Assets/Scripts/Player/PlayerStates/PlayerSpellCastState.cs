@@ -1,18 +1,19 @@
 using UnityEngine;
 
-public class PlayerAttackState : PlayerState
+public class PlayerSpellCastState : PlayerState
 {
-    public PlayerAttackState(Player player) : base(player) { }
+    public PlayerSpellCastState(Player player) : base(player) { }
 
     public override void Enter()
     {
         base.Enter();
-        anim.SetBool("isAttacking", true);
-        rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
+        anim.SetBool("isCasting", true);
     }
 
     public override void AnimationFinished()
-    { 
+    {
+        base.AnimationFinished();
+
         if(Mathf.Abs(MoveInput.x) > 0.1f)
         {
             player.ChangeState(player.moveState);
@@ -23,9 +24,9 @@ public class PlayerAttackState : PlayerState
         }
     }
 
-    public override void Exit()
+    public override void Exit() 
     {
         base.Exit();
-        anim.SetBool("isAttacking", false);
+        anim.SetBool("isCasting", false);
     }
 }
