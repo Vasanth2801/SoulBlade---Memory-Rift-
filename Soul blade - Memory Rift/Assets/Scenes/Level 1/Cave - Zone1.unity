@@ -485,6 +485,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Magic
   player: {fileID: 1338603450}
+  spellUIManager: {fileID: 443652534}
+  availableSpells:
+  - {fileID: 11400000, guid: ef0a90b5bbfcbbd4caa428036cbb7f68, type: 2}
+  - {fileID: 11400000, guid: 1f6e74a74b40c664bbc9d374ca72b013, type: 2}
+  - {fileID: 11400000, guid: 75d14c1b63ad31249bee8501eb9ee8c7, type: 2}
   currentSpell: {fileID: 11400000, guid: ef0a90b5bbfcbbd4caa428036cbb7f68, type: 2}
   sparkFX: {fileID: 893750902780028823, guid: 9a2843a9ea750b44489b179e7afb2ca4, type: 3}
   damage: 3
@@ -507,6 +512,7 @@ GameObject:
   m_Component:
   - component: {fileID: 443652532}
   - component: {fileID: 443652533}
+  - component: {fileID: 443652534}
   m_Layer: 5
   m_Name: Spell UI
   m_TagString: Untagged
@@ -560,6 +566,22 @@ MonoBehaviour:
   m_Spacing: {x: 10, y: 10}
   m_Constraint: 0
   m_ConstraintCount: 2
+--- !u!114 &443652534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 443652531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6347fd0098b914142a44149b7d58ba70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpellUIManager
+  slots:
+  - {fileID: 2169520893128899472}
+  - {fileID: 1219372255}
+  - {fileID: 722151940}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -692,7 +714,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -17.748255, y: -6.414878, z: -10}
+  m_LocalPosition: {x: -21.289324, y: -6.4226136, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1204,6 +1226,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6216286735478871709, guid: 2c165d67984e94f40a2d604f0dafc290, type: 3}
   m_PrefabInstance: {fileID: 722151938}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &722151940 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6807284147553634442, guid: 2c165d67984e94f40a2d604f0dafc290, type: 3}
+  m_PrefabInstance: {fileID: 722151938}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c9e42f30b8365f4ca4c49208f467db5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpellSlot
 --- !u!1 &745212808
 GameObject:
   m_ObjectHideFlags: 0
@@ -1754,6 +1787,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6216286735478871709, guid: 2c165d67984e94f40a2d604f0dafc290, type: 3}
   m_PrefabInstance: {fileID: 1219372253}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1219372255 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6807284147553634442, guid: 2c165d67984e94f40a2d604f0dafc290, type: 3}
+  m_PrefabInstance: {fileID: 1219372253}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c9e42f30b8365f4ca4c49208f467db5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpellSlot
 --- !u!1 &1330446188
 GameObject:
   m_ObjectHideFlags: 0
@@ -15357,6 +15401,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2c165d67984e94f40a2d604f0dafc290, type: 3}
+--- !u!114 &2169520893128899472 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6807284147553634442, guid: 2c165d67984e94f40a2d604f0dafc290, type: 3}
+  m_PrefabInstance: {fileID: 2169520893128899471}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c9e42f30b8365f4ca4c49208f467db5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpellSlot
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
