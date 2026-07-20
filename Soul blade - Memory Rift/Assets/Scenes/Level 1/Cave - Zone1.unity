@@ -454,7 +454,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4f5bf742e7a41e499a0603badd8057a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Health
-  currentHealth: 0
+  currentHealth: 4
   maxHealth: 100
 --- !u!114 &307920681
 MonoBehaviour:
@@ -485,12 +485,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Magic
   player: {fileID: 1338603450}
-  spellRange: 5
-  obstacleLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  spellCooldown: 1
-  playerRadius: 1.5
+  currentSpell: {fileID: 11400000, guid: ef0a90b5bbfcbbd4caa428036cbb7f68, type: 2}
   sparkFX: {fileID: 893750902780028823, guid: 9a2843a9ea750b44489b179e7afb2ca4, type: 3}
   damage: 3
   damageRadius: 5
@@ -1559,6 +1554,7 @@ MonoBehaviour:
   combat: {fileID: 307920679}
   damage: {fileID: 307920681}
   magic: {fileID: 307920682}
+  health: {fileID: 307920680}
   moveInput: {x: 0, y: 0}
   jumpPressed: 0
   jumpReleased: 0

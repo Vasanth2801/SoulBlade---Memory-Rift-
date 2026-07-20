@@ -59,6 +59,7 @@ public class Player : MonoBehaviour
     public Combat combat;
     public Damage damage;
     public Magic magic;
+    public Health health;
 
     [Header("Inputs")]
     public Vector2 moveInput;
