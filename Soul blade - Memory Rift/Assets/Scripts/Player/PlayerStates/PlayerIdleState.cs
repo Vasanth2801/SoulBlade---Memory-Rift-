@@ -15,7 +15,7 @@ public class PlayerIdleState : PlayerState
     {
         base.Update();
 
-        if(SpellCastPressed)
+        if(SpellCastPressed && magic.CanCast)
         {
             player.ChangeState(player.spellCastState);
         }

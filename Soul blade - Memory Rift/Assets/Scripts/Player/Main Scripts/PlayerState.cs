@@ -7,6 +7,7 @@ public abstract class PlayerState
     protected Rigidbody2D rb;
     protected Combat combat;
     protected Damage damage;
+    protected Magic magic;
 
     protected bool JumpPressed { get => player.jumpPressed; set => player.jumpPressed = value; }
     protected bool JumpReleased { get => player.jumpReleased; set => player.jumpReleased = value;  }
@@ -22,6 +23,7 @@ public abstract class PlayerState
         this.rb = player.rb;
         this.combat = player.combat;
         this.damage = player.damage;
+        this.magic = player.magic;
     }
 
     public virtual void Enter() { }

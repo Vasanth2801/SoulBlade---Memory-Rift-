@@ -58,6 +58,7 @@ public class Player : MonoBehaviour
     [Header("Core Component References")]
     public Combat combat;
     public Damage damage;
+    public Magic magic;
 
     [Header("Inputs")]
     public Vector2 moveInput;
