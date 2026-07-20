@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 5119038538f2cc4409a4b330a008e944
+guid: 4a0f0d07ec4a76545a078ce808298a66
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3736619520553653961
-    second: HotkeyBox_34x34_0
+      213: -7157624231363876037
+    second: free_8bit_spells_cover_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 32
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -74,7 +74,7 @@ TextureImporter:
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: 4
+    textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -126,23 +126,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: HotkeyBox_34x34_0
+      name: free_8bit_spells_cover_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 34
-        height: 34
+        width: 700
+        height: 500
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 6, y: 7, z: 7, w: 6}
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9c6146f08a32bd330800000000000000
-      internalID: 3736619520553653961
+      spriteID: b3be3dd2fa20bac90800000000000000
+      internalID: -7157624231363876037
       vertices: []
       indices: 
       edges: []
@@ -151,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: f22f20b7579ce144da282d492432ea1d
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      HotkeyBox_34x34_0: 3736619520553653961
+      free_8bit_spells_cover_0: -7157624231363876037
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
