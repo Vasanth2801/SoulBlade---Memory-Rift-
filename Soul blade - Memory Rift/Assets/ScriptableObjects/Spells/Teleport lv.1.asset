@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TeleportSpellSO
   itemName: Teleport
   icon: {fileID: -759221903, guid: b07d848b652951d4587e85c82bddfa17, type: 3}
-  coolDown: 1
+  itemSprite: {fileID: -5164599079202685034, guid: 593e14727ace7d247b94e8d820aa043a, type: 3}
+  coolDown: 2
   range: 5
   playerRadius: 1.5
   obstacleLayer:

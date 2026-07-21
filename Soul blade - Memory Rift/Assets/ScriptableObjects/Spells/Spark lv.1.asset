@@ -14,10 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SparkSpellSO
   itemName: Spark
   icon: {fileID: -1738950099, guid: b07d848b652951d4587e85c82bddfa17, type: 3}
-  coolDown: 0
+  itemSprite: {fileID: -5164599079202685034, guid: 593e14727ace7d247b94e8d820aa043a, type: 3}
+  coolDown: 3
   damage: 5
   radius: 5
-  sparkFX: {fileID: 0}
+  sparkFX: {fileID: 893750902780028823, guid: 9a2843a9ea750b44489b179e7afb2ca4, type: 3}
   enemyLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128

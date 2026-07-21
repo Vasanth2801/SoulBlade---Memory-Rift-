@@ -18,8 +18,7 @@ public class Magic : MonoBehaviour
     [SerializeField] private float damageRadius;
     [SerializeField] private LayerMask enemyLayer;
 
-    public bool CanCast => Time.time >= nextCastTime;
-    private float nextCastTime;
+    private Dictionary<SpellSO, float> spellCooldowns = new Dictionary<SpellSO, float>();
 
     private void Start()
     {
@@ -37,6 +36,11 @@ public class Magic : MonoBehaviour
         currentIndex = Mathf.Clamp(currentIndex, 0, availableSpells.Count - 1);
 
         spellUIManager.ShowSpells(availableSpells);
+
+        if(!spellCooldowns.ContainsKey(spellSO))
+        {
+            spellCooldowns[spellSO] = 0;
+        }
 
         if(availableSpells.Count > 0)
         {
@@ -80,17 +84,21 @@ public class Magic : MonoBehaviour
         CastSpell();
     }
 
+    public bool CanCast(SpellSO spellSO)
+    {
+        return Time.time >= spellCooldowns[spellSO];
+    }
+
     void CastSpell()
     {
-        if (!CanCast || CurrentSpell == null)
+        if (!CanCast(CurrentSpell) || CurrentSpell == null)
         {
             return;
         }
 
         CurrentSpell.Cast(player);
 
-        nextCastTime = Time.time + CurrentSpell.coolDown;
-
+        spellCooldowns[CurrentSpell] = Time.time + CurrentSpell.coolDown;
         spellUIManager.TriggerCooldown(CurrentSpell, CurrentSpell.coolDown);
     }
 }
