@@ -8,7 +8,6 @@ public class PlayerIdleState : PlayerState
     {
         base.Enter();
         anim.SetBool("isIdle", true);
-        rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
     }
 
     public override void Update()
@@ -36,6 +35,7 @@ public class PlayerIdleState : PlayerState
         {
             player.ChangeState(player.crouchState);
         }
+        rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
     }
 
     public override void Exit()

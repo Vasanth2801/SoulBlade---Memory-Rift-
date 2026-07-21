@@ -21,7 +21,11 @@ public class PlayerSlideState : PlayerState
     {
         base.Update();
 
-        if(slideTimer > 0)
+        if (JumpPressed && !player.CheckCieling())
+        {
+            player.ChangeState(player.jumpState);
+        }
+        else if(slideTimer > 0)
         {
             slideTimer -= Time.deltaTime;
         }

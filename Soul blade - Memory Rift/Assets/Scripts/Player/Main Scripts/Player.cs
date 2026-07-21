@@ -140,7 +140,10 @@ public class Player : MonoBehaviour
     {
         if(value.isPressed && isGrounded)
         {
-            jumpPressed = true;
+            if (isGrounded && !CheckCieling())
+            {
+                jumpPressed = true;
+            }
             jumpReleased = false;
         }
         else  // If we still going up
