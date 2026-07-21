@@ -307,6 +307,8 @@ MonoBehaviour:
   sr: {fileID: 5872248126429726777}
   anim: {fileID: 5315680510769060001}
   itemMessage: {fileID: 9061471778080528827}
+  canBeCollected: 0
+  collectDelay: 0.3
 --- !u!50 &2914748383824858936
 Rigidbody2D:
   serializedVersion: 5
@@ -322,7 +324,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 9.5
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -332,8 +334,8 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
+  m_CollisionDetection: 1
+  m_Constraints: 4
 --- !u!70 &526725761118699988
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

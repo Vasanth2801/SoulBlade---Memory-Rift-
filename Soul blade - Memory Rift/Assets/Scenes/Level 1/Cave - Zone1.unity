@@ -278,6 +278,7 @@ MonoBehaviour:
   collectableSO: {fileID: 11400000, guid: 1f6e74a74b40c664bbc9d374ca72b013, type: 2}
   lootPrefab: {fileID: 6462610948769776154, guid: 78e089359febb034da5dda1bbaac9d27, type: 3}
   spawnDelay: 0.2
+  launchForce: 20
 --- !u!95 &245321511
 Animator:
   serializedVersion: 7
@@ -2738,6 +2739,7 @@ MonoBehaviour:
   collectableSO: {fileID: 11400000, guid: ef0a90b5bbfcbbd4caa428036cbb7f68, type: 2}
   lootPrefab: {fileID: 6462610948769776154, guid: 78e089359febb034da5dda1bbaac9d27, type: 3}
   spawnDelay: 0.2
+  launchForce: 20
 --- !u!1 &1826641536
 GameObject:
   m_ObjectHideFlags: 0

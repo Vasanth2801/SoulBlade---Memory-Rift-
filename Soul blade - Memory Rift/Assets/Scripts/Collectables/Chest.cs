@@ -1,11 +1,12 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections.Generic;
 
 public class Chest : MonoBehaviour
 {
     [SerializeField] private Animator anim;
-    [SerializeField] private CollectableSO collectableSO;
+    [SerializeField] private List<CollectableSO> lootTable = new List<CollectableSO>();
     [SerializeField] private GameObject lootPrefab;
     [SerializeField] private float spawnDelay = 0.2f;
     [SerializeField] private float launchForce = 4f;
@@ -59,7 +60,17 @@ public class Chest : MonoBehaviour
 
         yield return new WaitForSeconds(spawnDelay);
 
-        Loot newLoot = Instantiate(lootPrefab, transform.position, Quaternion.identity).GetComponent<Loot>();
-        newLoot.Initialize(collectableSO);
+        foreach (CollectableSO loot in lootTable)
+        {
+            Loot newLoot = Instantiate(lootPrefab, transform.position, Quaternion.identity).GetComponent<Loot>();
+            newLoot.Initialize(loot);
+
+            Rigidbody2D rb = newLoot.GetComponent<Rigidbody2D>();
+
+            Vector2 direction = new Vector2(Random.Range(0.2f, 0.2f), 1f).normalized;
+            rb.AddForce(direction * launchForce, ForceMode2D.Impulse);
+
+            yield return new WaitForSeconds(spawnDelay);
+        }
     }
 }
