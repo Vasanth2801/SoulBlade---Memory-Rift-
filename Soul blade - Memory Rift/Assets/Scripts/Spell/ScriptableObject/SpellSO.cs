@@ -1,11 +1,14 @@
 using UnityEngine;
 
-public abstract class SpellSO : ScriptableObject
+public abstract class SpellSO : CollectableSO
 {
     [Header("General")]
-    public string spellName;
     public float coolDown;
-    public Sprite icon;
+
+    public override void Collect(Player player)
+    {
+        player.magic.LearnSpell(this);
+    }
 
     public abstract void Cast(Player player);
 }

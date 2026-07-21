@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42d56e998c467d04da8b6bd4dc90c332, type: 3}
   m_Name: Spark lv.1
   m_EditorClassIdentifier: Assembly-CSharp::SparkSpellSO
-  spellName: 
-  coolDown: 0
+  itemName: Spark
   icon: {fileID: -1738950099, guid: b07d848b652951d4587e85c82bddfa17, type: 3}
+  coolDown: 0
   damage: 5
   radius: 5
   sparkFX: {fileID: 0}

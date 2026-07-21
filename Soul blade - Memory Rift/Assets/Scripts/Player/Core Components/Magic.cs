@@ -9,7 +9,8 @@ public class Magic : MonoBehaviour
 
     [Header("Spell State")]
     [SerializeField] private List<SpellSO> availableSpells = new List<SpellSO>();
-    [SerializeField] private SpellSO currentSpell;
+    [SerializeField] private int currentIndex = 0;
+    public SpellSO CurrentSpell => availableSpells.Count > 0 ? availableSpells[currentIndex] : null;
 
     [Header("Spark Settings")]
     [SerializeField] private GameObject sparkFX;
@@ -23,6 +24,54 @@ public class Magic : MonoBehaviour
     private void Start()
     {
         spellUIManager.ShowSpells(availableSpells);
+        HighlightCurrentSpell();
+    }
+
+    public void LearnSpell(SpellSO spellSO)
+    {
+        if(!availableSpells.Contains(spellSO))
+        {
+            availableSpells.Add(spellSO);
+        }
+
+        currentIndex = Mathf.Clamp(currentIndex, 0, availableSpells.Count - 1);
+
+        spellUIManager.ShowSpells(availableSpells);
+
+        if(availableSpells.Count > 0)
+        {
+            HighlightCurrentSpell();
+        }
+    }
+
+    public void NextSpell()
+    {
+        if(availableSpells.Count == 0)
+        {
+            return;
+        }
+
+        currentIndex = (currentIndex + 1) % availableSpells.Count;
+        HighlightCurrentSpell();
+    }
+
+    public void PreviousSpell()
+    {
+        if (availableSpells.Count == 0)
+        {
+            return;
+        }
+
+        currentIndex = (currentIndex - 1 + availableSpells.Count) % availableSpells.Count;
+        HighlightCurrentSpell();
+    }
+
+    private void HighlightCurrentSpell()
+    {
+        if(CurrentSpell != null)
+        {
+            spellUIManager.HighlightSpell(CurrentSpell);
+        }
     }
 
     public void AnimationFinished()
@@ -33,13 +82,15 @@ public class Magic : MonoBehaviour
 
     void CastSpell()
     {
-        if (!CanCast || currentSpell == null)
+        if (!CanCast || CurrentSpell == null)
         {
             return;
         }
 
-        currentSpell.Cast(player);
+        CurrentSpell.Cast(player);
 
-        nextCastTime = Time.time + currentSpell.coolDown;
+        nextCastTime = Time.time + CurrentSpell.coolDown;
+
+        spellUIManager.TriggerCooldown(CurrentSpell, CurrentSpell.coolDown);
     }
 }

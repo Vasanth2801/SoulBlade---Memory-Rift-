@@ -164,6 +164,22 @@ public class Player : MonoBehaviour
         spellCastPressed = value.isPressed;
     }
 
+    public void OnLeftMove(InputValue value)
+    {
+        if(value.isPressed)
+        {
+            magic.PreviousSpell();
+        }
+    }
+
+    public void OnRightMove(InputValue value)
+    {
+        if (value.isPressed)
+        {
+            magic.NextSpell();
+        }
+    }
+
     void CheckGrounded()
     {
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
