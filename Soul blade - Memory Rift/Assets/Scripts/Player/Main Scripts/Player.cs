@@ -3,6 +3,8 @@ using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
+    public bool isControlLocked;
+
     public PlayerState currentState;
 
     public PlayerIdleState idleState;
@@ -71,6 +73,7 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
+        ServiceLocator.Register<Player>(this);
         idleState = new PlayerIdleState(this);
         jumpState = new PlayerJumpState(this);
         moveState = new PlayerMoveState(this);
@@ -133,12 +136,21 @@ public class Player : MonoBehaviour
 
     public void OnMove(InputValue value)
     {
+        if(isControlLocked)
+        {
+            moveInput = Vector2.zero;
+            return;
+        }
         moveInput = value.Get<Vector2>();
     }
 
     public void OnJump(InputValue value)
     {
-        if(value.isPressed && isGrounded)
+        if (isControlLocked)
+        {
+            return;
+        }
+        if (value.isPressed && isGrounded)
         {
             if (isGrounded && !CheckCieling())
             {
@@ -154,11 +166,19 @@ public class Player : MonoBehaviour
 
     public void OnRun(InputValue value)
     {
+        if (isControlLocked)
+        {
+            return;
+        }
         runPressed = value.isPressed;
     }
 
     public void OnAttack(InputValue value)
     {
+        if (isControlLocked)
+        {
+            return;
+        }
         attackPressed = value.isPressed;
     }
 
