@@ -5,7 +5,7 @@ using System.Security.Cryptography;
 
 public class RoomTransitionManager : MonoBehaviour
 {
-
+    [SerializeField] private SceneFader screenFader;
     private string currentRoom = "";
 
     private void Start()
@@ -20,6 +20,8 @@ public class RoomTransitionManager : MonoBehaviour
 
     private IEnumerator Transition(string sceneName, string spawnID)
     {
+        yield return screenFader.Fade(0f, 1f, 0.5f);
+
         if (!string.IsNullOrEmpty(currentRoom))
         {
             yield return SceneManager.UnloadSceneAsync(currentRoom);
@@ -35,6 +37,7 @@ public class RoomTransitionManager : MonoBehaviour
 
         currentRoom = SceneManager.GetActiveScene().name;
         SetupRoom(spawnID);
+        yield return screenFader.Fade(1f, 0f, 1f);
     }
 
     private void SetupRoom(string spawnID)
