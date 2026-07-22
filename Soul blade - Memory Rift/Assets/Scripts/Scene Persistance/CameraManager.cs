@@ -5,6 +5,8 @@ public class CameraManager : MonoBehaviour
 {
     [SerializeField] private CinemachineCamera vCam;
 
+    public Transform camTransform;
+
     private CinemachineConfiner2D confiner;
 
     void Awake()

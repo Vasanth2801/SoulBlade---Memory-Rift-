@@ -39,6 +39,8 @@ public class RoomTransitionManager : MonoBehaviour
         currentRoom = SceneManager.GetActiveScene().name;
         SetupRoom(spawnID);
         SetupCameraConfiner();
+        ResetParallax();
+
         yield return new WaitForSeconds(0.65f);
         yield return screenFader.Fade(1f, 0f, 1f);
     }
@@ -66,5 +68,15 @@ public class RoomTransitionManager : MonoBehaviour
     {
         CameraConfinerProvider provider = FindFirstObjectByType<CameraConfinerProvider>();
         camManager.SetConfiner(provider.confiner);
+    }
+
+    private void ResetParallax()
+    {
+        ParallaxManager parallax = FindFirstObjectByType<ParallaxManager>();
+
+        if(parallax != null)
+        {
+            parallax.Initialize(camManager.camTransform);
+        }
     }
 }

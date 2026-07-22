@@ -11,15 +11,21 @@ public class ParallaxManager : MonoBehaviour
 
     public ParallaxLayer[] layers;
     [SerializeField] private Transform mainCam;
+
     [SerializeField] private Vector3 lastCameraPosition;
 
-    private void Start()
+    public void Initialize(Transform camera)
     {
+        mainCam = camera;  
         lastCameraPosition = mainCam.position;
     }
 
     private void LateUpdate()
     {
+        if(!mainCam)
+        {
+            return;
+        }
         Vector3 cameraDelta = mainCam.position - lastCameraPosition;
             
         foreach(ParallaxLayer layer in layers)
