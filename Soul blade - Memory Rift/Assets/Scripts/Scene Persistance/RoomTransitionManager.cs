@@ -6,6 +6,7 @@ using System.Security.Cryptography;
 public class RoomTransitionManager : MonoBehaviour
 {
     [SerializeField] private SceneFader screenFader;
+    [SerializeField] private CameraManager camManager;
     private string currentRoom = "";
 
     private void Start()
@@ -37,6 +38,8 @@ public class RoomTransitionManager : MonoBehaviour
 
         currentRoom = SceneManager.GetActiveScene().name;
         SetupRoom(spawnID);
+        SetupCameraConfiner();
+        yield return new WaitForSeconds(0.65f);
         yield return screenFader.Fade(1f, 0f, 1f);
     }
 
@@ -57,5 +60,11 @@ public class RoomTransitionManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void SetupCameraConfiner()
+    {
+        CameraConfinerProvider provider = FindFirstObjectByType<CameraConfinerProvider>();
+        camManager.SetConfiner(provider.confiner);
     }
 }

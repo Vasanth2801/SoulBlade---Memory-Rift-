@@ -12,5 +12,8 @@ public class CameraManager : MonoBehaviour
         confiner = vCam.GetComponent<CinemachineConfiner2D>();
     }
 
-
+    public void SetConfiner(Collider2D newConfiner)
+    {
+        confiner.BoundingShape2D = newConfiner;
+    }
 }

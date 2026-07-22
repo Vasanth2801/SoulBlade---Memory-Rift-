@@ -14156,6 +14156,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1889872616}
   - component: {fileID: 1889872617}
+  - component: {fileID: 1889872618}
   m_Layer: 0
   m_Name: Confiner 2D
   m_TagString: Untagged
@@ -14230,9 +14231,22 @@ PolygonCollider2D:
       - {x: -33.520084, y: 13.325584}
       - {x: -33.87766, y: -17.56418}
       - {x: 9.783292, y: -16.963966}
-      - {x: 85.94972, y: -16.36563}
-      - {x: 86.11354, y: 12.674537}
+      - {x: 84.10579, y: -16.36563}
+      - {x: 84.20132, y: 12.74283}
   m_UseDelaunayMesh: 1
+--- !u!114 &1889872618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1889872615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91cee41a96ca4b64e959c0c0163627c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraConfinerProvider
+  confiner: {fileID: 1889872617}
 --- !u!1 &2143703299
 GameObject:
   m_ObjectHideFlags: 0
