@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: baf3800959cc162449fdb20f8cce9453, type: 3}
+  m_Name: Map 1
+  m_EditorClassIdentifier: Assembly-CSharp::MapCollectableSO
+  itemName: Map 1
+  icon: {fileID: -4886925978764846218, guid: f828269b3faa1104781066bca8d622b0, type: 3}
+  itemSprite: {fileID: -4886925978764846218, guid: f828269b3faa1104781066bca8d622b0, type: 3}
+  roomsToReveal:
+  - Cave - Zone1
+  - Cave - Zone2

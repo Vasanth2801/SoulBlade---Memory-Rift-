@@ -14,8 +14,14 @@ public class Enemy : MonoBehaviour
     public StateMachine StateMachine { get; private set; }
     public Enemy_Combat Combat { get; private set; }
 
+    //Persistance
+    private WorldState worldState;
+    private PersistentGuid guid;
+    private bool isDefeated;
+
     private void Awake()
     {
+        guid = GetComponent<PersistentGuid>();
         RB = GetComponent<Rigidbody2D>();
         StateMachine = new StateMachine();
         Senses = GetComponent<EnemySenses>();
@@ -25,6 +31,16 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
+        // Persistance
+
+        worldState = ServiceLocator.Get<WorldState>();
+
+        if(worldState.defeatedEnemies.Contains(guid.Guid))
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         StateMachine.Initialize(new PatrolState(this));
     }
 
@@ -51,5 +67,15 @@ public class Enemy : MonoBehaviour
         Vector3 scale = transform.localScale;
         scale.x = FacingDirection;
         transform.localScale = scale;
+    }
+
+    public void Die()
+    {
+        if(isDefeated)
+        {
+            return;
+        }
+
+        worldState.defeatedEnemies.Add(guid.Guid);
     }
 }

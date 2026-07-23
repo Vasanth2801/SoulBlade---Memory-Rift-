@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 1931020115880840572}
   - component: {fileID: 1130709368789891696}
   - component: {fileID: 7367200563687924151}
+  - component: {fileID: 644446052630303232}
   m_Layer: 7
   m_Name: Kobold Enemy
   m_TagString: Untagged
@@ -268,6 +269,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Health
   currentHealth: 3
   maxHealth: 3
+--- !u!114 &644446052630303232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 907518918895804050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b82a74e0cf5f0894094cd05a8a4a2206, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PersistentGuid
+  guid: 8dd4165f-6dae-4a3e-940d-c67e122143fa
 --- !u!1 &3182429250810647429
 GameObject:
   m_ObjectHideFlags: 0

@@ -14,6 +14,26 @@ public class Chest : MonoBehaviour
     private PlayerInput playerInput;
     private bool isOpened;
 
+    //Persistence 
+    private WorldState worldState;
+    private PersistentGuid guid;
+
+    private void Awake()
+    {
+        guid = GetComponent<PersistentGuid>();
+    }
+
+    private void Start()
+    {
+        worldState = ServiceLocator.Get<WorldState>();
+
+        if(worldState.openedChests.Contains(guid.Guid))
+        {
+            isOpened = true;
+            anim.Play("ChestOpenIdle");
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.TryGetComponent<PlayerInput>(out var input))
@@ -42,12 +62,12 @@ public class Chest : MonoBehaviour
 
         Vector2 moveInput = playerInput.actions["Move"].ReadValue<Vector2>();
 
-        if(moveInput.y > 0.1f)
+        if(!isOpened && moveInput.y > 0.1f)
         {
             StartCoroutine(OpenChestRoutine());
         }
 
-        if (playerInput.actions["Interact"].WasPressedThisFrame())
+        if (!isOpened && playerInput.actions["Interact"].WasPressedThisFrame())
         {
             StartCoroutine(OpenChestRoutine());
         }
@@ -55,7 +75,13 @@ public class Chest : MonoBehaviour
 
     private IEnumerator OpenChestRoutine()
     {
+        if(isOpened)
+        {
+            yield break;
+        }
+
         isOpened = true;
+        worldState.openedChests.Add(guid.Guid);
         anim.Play("Chest");
 
         yield return new WaitForSeconds(spawnDelay);
