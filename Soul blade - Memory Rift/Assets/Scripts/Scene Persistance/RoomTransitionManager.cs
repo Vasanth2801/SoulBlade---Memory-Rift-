@@ -86,7 +86,7 @@ public class RoomTransitionManager : MonoBehaviour
 
     private void SetupCameraConfiner(RoomService service)
     {
-        if (service.provider != null)
+        if (service != null && service.provider != null)
         {
             camManager.SetConfiner(service.provider.confiner);
         }
@@ -94,7 +94,7 @@ public class RoomTransitionManager : MonoBehaviour
 
     private void ResetParallax(RoomService service)
     {
-        if(service.parallax != null)
+        if(service != null && service.parallax != null)
         {
             service.parallax.Initialize(camManager.camTransform);
         }

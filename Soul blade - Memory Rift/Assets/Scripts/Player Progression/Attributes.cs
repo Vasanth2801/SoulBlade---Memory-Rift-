@@ -3,10 +3,10 @@ using UnityEngine;
 [System.Serializable]
 public class Attributes
 {
-    public int power;
-    public int vitality;
-    public int focus;
-    public int agility;
+    public int power = 10;
+    public int vitality = 10;
+    public int focus = 10;
+    public int agility = 10;
 
     //Create a copy from preview purposes 
     public Attributes Clone()
