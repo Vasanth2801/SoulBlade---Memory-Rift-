@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Health : MonoBehaviour
@@ -8,6 +9,9 @@ public class Health : MonoBehaviour
 
     [SerializeField] private int currentHealth;
     [SerializeField] private int maxHealth;
+
+    [Header("Pop up")]
+    public GameObject healthPopup;
 
     private void Start()
     {
@@ -22,7 +26,14 @@ public class Health : MonoBehaviour
         {
             currentHealth = maxHealth;
         }
-        else if (currentHealth <= 0)
+
+        if (healthPopup != null)
+        {
+            var popup = Instantiate(healthPopup, transform.position, Quaternion.identity);
+            popup.GetComponent<HealthPopup>().Setup(amount);
+        }
+
+        if (currentHealth <= 0)
         {
             onDeath?.Invoke(sourcePosition);
         }

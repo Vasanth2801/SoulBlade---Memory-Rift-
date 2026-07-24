@@ -6,6 +6,7 @@ public class ProgressionManager : MonoBehaviour
     [Header("UI References")]
     public TMP_Text pointsText;
     public AttributesSlot[] attributesSlots;
+    public StatsSlot[] statsSlots;
 
     [Header("Settings")]
     public int availablePoints = 5;
@@ -85,5 +86,26 @@ public class ProgressionManager : MonoBehaviour
         {
             slot.Refresh();
         }
+        RefreshStatsMenu();
+    }
+
+    public void RefreshStatsMenu()
+    {
+        statsSlots[0].Refresh(
+            Stats.MaxHealth(baseAttributes),
+            Stats.MaxHealth(previewAttributes)
+            );
+        statsSlots[1].Refresh(
+            Stats.AttackDamage(baseAttributes),
+            Stats.AttackDamage(previewAttributes)
+            );
+        statsSlots[2].Refresh(
+            Stats.SpellDamage(baseAttributes),
+            Stats.SpellDamage(previewAttributes)
+            );
+        statsSlots[3].Refresh(
+            Stats.CritChance(baseAttributes),
+            Stats.CritChance(previewAttributes)
+            );
     }
 }
