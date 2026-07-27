@@ -1,5 +1,4 @@
 using System;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class Combat : MonoBehaviour
@@ -7,6 +6,8 @@ public class Combat : MonoBehaviour
 
     [Header("Attack Settings")]
     [SerializeField] private int damage;
+    [SerializeField] private float critChance;
+    [SerializeField] private float critMultiplier;
     [SerializeField] private float attackradius = 0.5f;
     [SerializeField] private float attackCoolDown = 1f;
     [SerializeField] private Transform attackPoint;
@@ -37,7 +38,12 @@ public class Combat : MonoBehaviour
         if (enemy != null)
         {
             hitFX.Play("Hit");
-            enemy.GetComponent<Health>().ChangeHealth(-damage, transform.position);
+            int realDamage = damage;
+            if (UnityEngine.Random.value < critChance)
+            {
+                realDamage = Mathf.RoundToInt(realDamage * critMultiplier);
+            }
+            enemy.GetComponent<Health>().ChangeHealth(-realDamage, transform.position);
         }
     }
 }

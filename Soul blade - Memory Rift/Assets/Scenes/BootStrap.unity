@@ -952,8 +952,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4f5bf742e7a41e499a0603badd8057a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Health
-  currentHealth: 4
-  maxHealth: 100
+  currentHealth: 60
+  maxHealth: 60
   healthPopup: {fileID: 4870131036736461531, guid: 505619c88c98d494bad0ef6ca76150e0, type: 3}
 --- !u!114 &307920681
 MonoBehaviour:
@@ -4543,6 +4543,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStatsController
   ProgressionManager: {fileID: 958630303}
+  health: {fileID: 307920680}
 --- !u!224 &1340722658 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 879879922688757937, guid: 3b6763493aacf4f4a9c03aede8892846, type: 3}

@@ -13,13 +13,7 @@ public class Health : MonoBehaviour
     [Header("Pop up")]
     public GameObject healthPopup;
 
-    private void Start()
-    {
-        currentHealth = maxHealth;
-        OnHealthChanged?.Invoke(currentHealth, maxHealth);
-    }
-
-    public void ChangeHealth(int amount, Vector2 sourcePosition)
+    public void ChangeHealth(int amount, Vector2 sourcePosition, bool showPopup = true)
     {
         currentHealth += amount;
 
@@ -29,7 +23,7 @@ public class Health : MonoBehaviour
         }
 
         OnHealthChanged?.Invoke(currentHealth, maxHealth);
-        if (healthPopup != null)
+        if (healthPopup != null && showPopup)
         {
             var popup = Instantiate(healthPopup, transform.position, Quaternion.identity);
             popup.GetComponent<HealthPopup>().Setup(amount);
@@ -43,5 +37,14 @@ public class Health : MonoBehaviour
         {
             onDamaged?.Invoke(sourcePosition);
         }
+    }
+
+    public void ChangeMaxHealth(int newMaxHealth)
+    {
+        int difference = newMaxHealth - maxHealth;
+
+        maxHealth += difference;
+
+        ChangeHealth(difference, Vector2.zero, false);
     }
 }
