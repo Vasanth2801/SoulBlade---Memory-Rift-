@@ -1,8 +1,11 @@
 using UnityEngine;
 using TMPro;
+using System;
 
 public class ProgressionManager : MonoBehaviour
 {
+    public event Action OnStatsChanged;
+
     [Header("UI References")]
     public TMP_Text pointsText;
     public AttributesSlot[] attributesSlots;
@@ -64,6 +67,7 @@ public class ProgressionManager : MonoBehaviour
         baseAttributes = previewAttributes.Clone();
         startingPoints = availablePoints;
         RefreshUI();
+        OnStatsChanged?.Invoke();
     }
 
     public void CancelChanges()
