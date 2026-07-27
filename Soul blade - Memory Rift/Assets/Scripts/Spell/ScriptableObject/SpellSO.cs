@@ -10,5 +10,5 @@ public abstract class SpellSO : CollectableSO
         player.magic.LearnSpell(this);
     }
 
-    public abstract void Cast(Player player);
+    public abstract void Cast(Player player, int spellPower);
 }

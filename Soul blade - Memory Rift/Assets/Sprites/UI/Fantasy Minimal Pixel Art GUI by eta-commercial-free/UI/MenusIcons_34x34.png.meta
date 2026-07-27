@@ -135,35 +135,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Map
-      rect:
-        serializedVersion: 2
-        x: 5
-        y: 8
-        width: 23
-        height: 21
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 67bd710e6b62e2cb0800000000000000
-      internalID: -4886925978764846218
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: MenusIcons_34x34_1
       rect:
         serializedVersion: 2
-        x: 39
-        y: 4
-        width: 24
-        height: 27
+        x: 34
+        y: 0
+        width: 34
+        height: 34
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -182,10 +160,10 @@ TextureImporter:
       name: MenusIcons_34x34_2
       rect:
         serializedVersion: 2
-        x: 75
-        y: 4
-        width: 22
-        height: 25
+        x: 68
+        y: 0
+        width: 34
+        height: 34
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -204,10 +182,10 @@ TextureImporter:
       name: MenusIcons_34x34_3
       rect:
         serializedVersion: 2
-        x: 109
-        y: 6
-        width: 22
-        height: 22
+        x: 102
+        y: 0
+        width: 34
+        height: 34
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -218,6 +196,28 @@ TextureImporter:
       bones: []
       spriteID: 0b10830095d0d1460800000000000000
       internalID: 7213936854024323504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MenusIcons_34x34_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 34
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c4cff680e86cee49905b983f1f9a724
+      internalID: -2133570206
       vertices: []
       indices: 
       edges: []
@@ -234,9 +234,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":34.0,"y":34.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      Map: -4886925978764846218
+      MenusIcons_34x34_0: -2133570206
       MenusIcons_34x34_1: -1934401166720496741
       MenusIcons_34x34_2: -2517394315501486498
       MenusIcons_34x34_3: 7213936854024323504

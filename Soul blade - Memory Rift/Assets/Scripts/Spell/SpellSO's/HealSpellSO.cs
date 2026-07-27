@@ -8,11 +8,14 @@ public class HealSpellSO : SpellSO
     public int healAmount = 10;
     public GameObject healFX;
 
-    public override void Cast(Player player)
+    public override void Cast(Player player, int spellPower)
     {
         GameObject newHealFX = Instantiate(healFX, player.transform.position, Quaternion.identity);
         Destroy(newHealFX, 2);
 
-        player.health.ChangeHealth(healAmount, player.transform.position);
+        float spellModifier = 1f + (spellPower / 30f);
+        int realAmount = Mathf.RoundToInt(healAmount + spellModifier);   
+
+        player.health.ChangeHealth(realAmount, player.transform.position);
     }
 }

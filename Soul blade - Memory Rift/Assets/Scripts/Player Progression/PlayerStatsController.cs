@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class PlayerStatsController : MonoBehaviour
 {
@@ -6,6 +7,7 @@ public class PlayerStatsController : MonoBehaviour
     public ProgressionManager ProgressionManager;
     public Health health;
     public Combat combat;
+    public Magic magic;
 
     private Attributes BaseAttributes => ProgressionManager.baseAttributes;
         
@@ -21,8 +23,7 @@ public class PlayerStatsController : MonoBehaviour
     {
         ApplyHealthStats();
         ApplyCombatStats();
-        //Apply Spell 
-        Debug.Log("All Stats was changed");
+        ApplyMagicStats();
     }
 
     void ApplyHealthStats()
@@ -33,5 +34,10 @@ public class PlayerStatsController : MonoBehaviour
     void ApplyCombatStats()
     {
         combat.SetStats(Stats.AttackDamage(BaseAttributes),Stats.CritChance(BaseAttributes));
+    }
+
+    void ApplyMagicStats()
+    {
+        magic.SetStats(Stats.SpellPower(BaseAttributes));
     }
 }

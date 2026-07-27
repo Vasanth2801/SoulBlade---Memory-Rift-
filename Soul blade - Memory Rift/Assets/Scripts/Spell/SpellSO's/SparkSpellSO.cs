@@ -9,7 +9,7 @@ public class SparkSpellSO : SpellSO
     public GameObject sparkFX;
     public LayerMask enemyLayer;
 
-    public override void Cast(Player player)
+    public override void Cast(Player player, int spellPower)
     {
 
         Collider2D[] enemies = Physics2D.OverlapCircleAll(player.transform.position, radius, enemyLayer);
@@ -20,7 +20,9 @@ public class SparkSpellSO : SpellSO
 
             if (health != null)
             {
-                health.ChangeHealth(-damage, enemy.transform.position);
+                float spellModifier = 1f + (spellPower / 30f);
+                int realDamage = Mathf.RoundToInt(damage * spellModifier);
+                health.ChangeHealth(-realDamage, enemy.transform.position);
             }
 
             if (sparkFX != null)

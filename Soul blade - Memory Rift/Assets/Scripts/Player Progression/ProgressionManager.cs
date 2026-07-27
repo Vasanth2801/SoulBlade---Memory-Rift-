@@ -2,7 +2,7 @@ using UnityEngine;
 using TMPro;
 using System;
 
-public class ProgressionManager : MonoBehaviour
+public class ProgressionManager : MenuPanel
 {
     public event Action OnStatsChanged;
 
@@ -93,6 +93,16 @@ public class ProgressionManager : MonoBehaviour
         RefreshStatsMenu();
     }
 
+    public override void Open()
+    {
+        RefreshStatsMenu();
+    }
+
+    public override void Close()
+    {
+        CancelChanges();
+    }
+
     public void RefreshStatsMenu()
     {
         statsSlots[0].Refresh(
@@ -104,8 +114,8 @@ public class ProgressionManager : MonoBehaviour
             Stats.AttackDamage(previewAttributes)
             );
         statsSlots[2].Refresh(
-            Stats.SpellDamage(baseAttributes),
-            Stats.SpellDamage(previewAttributes)
+            Stats.SpellPower(baseAttributes),
+            Stats.SpellPower(previewAttributes)
             );
         statsSlots[3].Refresh(
             Stats.CritChance(baseAttributes),
