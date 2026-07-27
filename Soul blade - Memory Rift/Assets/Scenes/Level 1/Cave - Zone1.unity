@@ -478,10 +478,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Kobold Enemy
       objectReference: {fileID: 0}
-    - target: {fileID: 7367200563687924151, guid: 72e0fa441674d71469154c58871f5776, type: 3}
-      propertyPath: healthPopup
-      value: 
-      objectReference: {fileID: 4870131036736461531, guid: 505619c88c98d494bad0ef6ca76150e0, type: 3}
     - target: {fileID: 8286254000879474397, guid: 72e0fa441674d71469154c58871f5776, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.12653875

@@ -931,7 +931,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9df0ac14a7e2e14cb367f7f6340f608, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Combat
-  damage: 2
+  damage: 30
+  critMultiplier: 1.5
   attackradius: 0.5
   attackCoolDown: 1
   attackPoint: {fileID: 708934517}
@@ -4544,6 +4545,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStatsController
   ProgressionManager: {fileID: 958630303}
   health: {fileID: 307920680}
+  combat: {fileID: 307920679}
 --- !u!224 &1340722658 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 879879922688757937, guid: 3b6763493aacf4f4a9c03aede8892846, type: 3}

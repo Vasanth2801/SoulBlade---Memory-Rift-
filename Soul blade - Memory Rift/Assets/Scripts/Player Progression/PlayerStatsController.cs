@@ -20,7 +20,7 @@ public class PlayerStatsController : MonoBehaviour
     private void ApplyAllStats()
     {
         ApplyHealthStats();
-        //Apply Damage
+        ApplyCombatStats();
         //Apply Spell 
         Debug.Log("All Stats was changed");
     }
@@ -28,5 +28,10 @@ public class PlayerStatsController : MonoBehaviour
     void ApplyHealthStats()
     {
         health.ChangeMaxHealth(Stats.MaxHealth(BaseAttributes));
+    }
+
+    void ApplyCombatStats()
+    {
+        combat.SetStats(Stats.AttackDamage(BaseAttributes),Stats.CritChance(BaseAttributes));
     }
 }

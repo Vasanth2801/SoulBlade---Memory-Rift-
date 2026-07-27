@@ -3,10 +3,9 @@ using UnityEngine;
 
 public class Combat : MonoBehaviour
 {
-
     [Header("Attack Settings")]
-    [SerializeField] private int damage;
-    [SerializeField] private float critChance;
+    public int damage;
+    private float critChance;
     [SerializeField] private float critMultiplier;
     [SerializeField] private float attackradius = 0.5f;
     [SerializeField] private float attackCoolDown = 1f;
@@ -22,6 +21,12 @@ public class Combat : MonoBehaviour
     public void AttackAnimationFinsihed()
     {
         player.AnimationFinsihed();
+    }
+
+    public void SetStats(int damage, float critChance)
+    {
+        this.damage = damage;
+        this.critChance = critChance;
     }
 
     public void Attack()
