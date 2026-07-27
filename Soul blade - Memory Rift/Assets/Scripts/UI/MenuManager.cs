@@ -60,7 +60,7 @@ public class MenuManager : MonoBehaviour
         }
     }
 
-    public void CloseAll()
+    public  void CloseAll()
     {
         StartCoroutine(SwitchRoutine(null));
     }

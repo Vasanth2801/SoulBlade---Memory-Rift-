@@ -58,6 +58,8 @@ public class RoomTransitionManager : MonoBehaviour
         SetupCameraConfiner(service);
         ResetParallax(service);
 
+        ServiceLocator.Get<AudioManager>().PlayMusic(service.roomMusic);
+
         isTransiting = false;
         player.isControlLocked = false;
 

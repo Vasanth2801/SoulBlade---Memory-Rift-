@@ -443,6 +443,7 @@ MonoBehaviour:
   parallax: {fileID: 663930844}
   spawns:
   - {fileID: 2122025644}
+  roomMusic: {fileID: 8300000, guid: 5995433f9955b154d8e01395644cea7b, type: 3}
 --- !u!1 &663930840
 GameObject:
   m_ObjectHideFlags: 0
