@@ -34,7 +34,7 @@ public class AudioManager : MonoBehaviour
         musicSource.volume = volume;
         musicSource.Play();
 
-        yield break;
+        yield return Fade(volume, fadeTime);
     }
 
     IEnumerator Fade(float target, float duration)
@@ -48,5 +48,7 @@ public class AudioManager : MonoBehaviour
             musicSource.volume = Mathf.Lerp(start, target, time/duration);
             yield return null;
         }
+
+        musicSource.volume = target;
     }
 }
