@@ -15,8 +15,19 @@ public class Combat : MonoBehaviour
     [SerializeField] private Player player;
     [SerializeField] private Animator hitFX;
 
+    [Header("Sound")]
+    public AudioData attackSound;
+    public AudioData hitSound;
+
+    private AudioManager audioManager;
+
     public bool CanAttack => Time.time >= nextAttackTime;
     private float nextAttackTime;
+
+    public void Start()
+    {
+        audioManager = ServiceLocator.Get<AudioManager>();
+    }
 
     public void AttackAnimationFinsihed()
     {
@@ -36,12 +47,15 @@ public class Combat : MonoBehaviour
             return;
         }
 
+        audioManager.PlaySFX(attackSound);
+
         nextAttackTime = Time.time + attackCoolDown;
 
         Collider2D enemy = Physics2D.OverlapCircle(attackPoint.position, attackradius, enemylayer);
 
         if (enemy != null)
         {
+            audioManager.PlaySFX(hitSound);
             hitFX.Play("Hit");
             int realDamage = damage;
             if (UnityEngine.Random.value < critChance)

@@ -33,7 +33,7 @@ public class RoomTransitionManager : MonoBehaviour
         
         if(!string.IsNullOrEmpty(spawnID))
         {
-            yield return screenFader.Fade(0f, 1f, 0.8f);
+            yield return screenFader.Fade(0f, 1f, 0.45f);
         }
         
 
@@ -63,11 +63,11 @@ public class RoomTransitionManager : MonoBehaviour
         isTransiting = false;
         player.isControlLocked = false;
 
-        yield return new WaitForSeconds(0.65f);
+        yield return new WaitForSeconds(0.25f);
 
         if (!string.IsNullOrEmpty(spawnID))
         {
-            yield return screenFader.Fade(1f, 0f,0.6f);
+            yield return screenFader.Fade(1f, 0f,0.25f);
         }
     }
 

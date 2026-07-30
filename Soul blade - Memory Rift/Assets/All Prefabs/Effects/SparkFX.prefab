@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 849670764228064000}
   - component: {fileID: 6369833265663519455}
   - component: {fileID: 7555683138148389600}
+  - component: {fileID: 6785211067987351694}
   m_Layer: 0
   m_Name: SparkFX
   m_TagString: Untagged
@@ -115,3 +116,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &6785211067987351694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 893750902780028823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5340f78c7c811c147a2edfa4714d8b38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SingleSoundProxy
+  sound:
+    soundClip: {fileID: 8300000, guid: f1cb5d83282f2904a85f73111d068616, type: 3}
+    volume: 0.5

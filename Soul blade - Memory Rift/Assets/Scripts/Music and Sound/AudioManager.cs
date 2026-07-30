@@ -1,20 +1,42 @@
+using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
     [SerializeField] private AudioSource musicSource;
+    [SerializeField] private int poolSize = 10;
 
+
+    private List<AudioSource> sfxPool;
     private Coroutine musicRoutine;
 
     private void Awake()
     {
         ServiceLocator.Register(this);
+
+        sfxPool = new List<AudioSource>();
+        for(int i = 0; i< poolSize; i++)
+        {
+            sfxPool.Add(gameObject.AddComponent<AudioSource>());
+        }
     }
 
-    public void PlayMusic(AudioClip clip, float volume = 1, float fadeTime = 0.5f)
+    public void PlaySFX(AudioData data)
     {
-        if(musicSource.clip == clip)
+        for (int i = 0; i < sfxPool.Count; i++)
+        {
+            if (!sfxPool[i].isPlaying)
+            {
+                sfxPool[i].PlayOneShot(data.soundClip,data.volume);
+                return;
+            }
+        }
+    }
+
+    public void PlayMusic(AudioData data, float fadeTime = 0.5f)
+    {
+        if(musicSource.clip == data.soundClip)
         {
             return;
         }
@@ -23,7 +45,7 @@ public class AudioManager : MonoBehaviour
         {
             StopCoroutine(musicRoutine);
         }
-        musicRoutine = StartCoroutine(PlayMusicRoutine(clip,volume,fadeTime));
+        musicRoutine = StartCoroutine(PlayMusicRoutine(data.soundClip,data.volume,fadeTime));
     }
 
     IEnumerator PlayMusicRoutine(AudioClip clip, float volume, float fadeTime)
@@ -51,4 +73,11 @@ public class AudioManager : MonoBehaviour
 
         musicSource.volume = target;
     }
+}
+
+[System.Serializable]
+public class AudioData
+{
+    public AudioClip soundClip;
+    [Range(0,1)] public float volume;
 }

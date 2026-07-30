@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class MusicTrigger : MonoBehaviour
 {
-    [SerializeField] private AudioClip musicClip;
+    [SerializeField] private AudioData musicClip;
     [SerializeField] private float volume;
 
     private bool hasPlayed;

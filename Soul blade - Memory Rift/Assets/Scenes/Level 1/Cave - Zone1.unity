@@ -478,6 +478,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Kobold Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 1931020115880840572, guid: 72e0fa441674d71469154c58871f5776, type: 3}
+      propertyPath: hitSound.volume
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1931020115880840572, guid: 72e0fa441674d71469154c58871f5776, type: 3}
+      propertyPath: attackSound.volume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1931020115880840572, guid: 72e0fa441674d71469154c58871f5776, type: 3}
+      propertyPath: hitSound.soundClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 7c47b20bb9874304a809dc5580d403ba, type: 3}
+    - target: {fileID: 1931020115880840572, guid: 72e0fa441674d71469154c58871f5776, type: 3}
+      propertyPath: attackSound.soundClip
+      value: 
+      objectReference: {fileID: 8300000, guid: fd25a15f9797641458336cccfb445343, type: 3}
     - target: {fileID: 8286254000879474397, guid: 72e0fa441674d71469154c58871f5776, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.12653875
@@ -716,7 +732,9 @@ MonoBehaviour:
   parallax: {fileID: 1889872619}
   spawns:
   - {fileID: 456500298}
-  roomMusic: {fileID: 8300000, guid: 513197e4ea0798a4aa5c273b234bf22b, type: 3}
+  roomMusic:
+    soundClip: {fileID: 8300000, guid: 50bd606008f0d4f4180c404953100b56, type: 3}
+    volume: 0.15
 --- !u!1 &664012443
 GameObject:
   m_ObjectHideFlags: 0
@@ -1768,7 +1786,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da9a1b3ccbbd4f14ebfa84cc36faa37b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MusicTrigger
-  musicClip: {fileID: 8300000, guid: 73e800617cbae8843909627cf37f3b01, type: 3}
+  musicClip:
+    soundClip: {fileID: 8300000, guid: 4dbe6ab97f4079a479be89c2c9f5c913, type: 3}
+    volume: 0.15
   volume: 1
 --- !u!1 &1843772302
 GameObject:

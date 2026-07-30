@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Map 1
   m_EditorClassIdentifier: Assembly-CSharp::MapCollectableSO
   itemName: Map 1
-  icon: {fileID: -4886925978764846218, guid: f828269b3faa1104781066bca8d622b0, type: 3}
-  itemSprite: {fileID: -4886925978764846218, guid: f828269b3faa1104781066bca8d622b0, type: 3}
+  icon: {fileID: -2133570206, guid: f828269b3faa1104781066bca8d622b0, type: 3}
+  itemSprite: {fileID: -2133570206, guid: f828269b3faa1104781066bca8d622b0, type: 3}
   roomsToReveal:
   - Cave - Zone1
   - Cave - Zone2
