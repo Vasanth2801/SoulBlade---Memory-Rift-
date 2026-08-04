@@ -16,5 +16,5 @@ MonoBehaviour:
   icon: {fileID: -2133570206, guid: f828269b3faa1104781066bca8d622b0, type: 3}
   itemSprite: {fileID: -2133570206, guid: f828269b3faa1104781066bca8d622b0, type: 3}
   roomsToReveal:
-  - Cave - Zone1
+  - Forest - Zone1
   - Cave - Zone2

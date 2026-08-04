@@ -25,18 +25,16 @@ public class RoomTransitionManager : MonoBehaviour
 
     private IEnumerator Transition(string sceneName, string spawnID)
     {
-        isTransiting = true;
+        isTransiting = true;    
 
         Player player = ServiceLocator.Get<Player>();
         player.isControlLocked = true;
 
-        
         if(!string.IsNullOrEmpty(spawnID))
         {
             yield return screenFader.Fade(0f, 1f, 0.45f);
         }
         
-
         if (!string.IsNullOrEmpty(currentRoom))
         {
             yield return SceneManager.UnloadSceneAsync(currentRoom);

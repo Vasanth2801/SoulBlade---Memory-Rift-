@@ -1362,7 +1362,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -8537226711237687113, guid: d2ec1cd33ba985f49bac67caca6ba5b6, type: 3}
+  m_Sprite: {fileID: 1684256597749961581, guid: eb057f4134617ac40a7ef57eba16f0af, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2061,7 +2061,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 9
+  orthographic size: 7.5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2086,7 +2086,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -19, y: -6.37, z: -10}
+  m_LocalPosition: {x: -19, y: -4.17, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6099,7 +6099,7 @@ GameObject:
   - component: {fileID: 1439716064}
   - component: {fileID: 1439716065}
   m_Layer: 5
-  m_Name: Cave - Zone1
+  m_Name: Forest - Zone1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6696,8 +6696,8 @@ MonoBehaviour:
       Size: {x: 0.8, y: 0.8}
       Offset: {x: 0, y: 0}
   CenterOnActivate: 1
-  TargetOffset: {x: 0, y: 0, z: 0}
-  Damping: {x: 1, y: 1, z: 1}
+  TargetOffset: {x: 0, y: 2.2, z: 0}
+  Damping: {x: 1, y: 0, z: 1}
   Lookahead:
     Enabled: 0
     Time: 0
@@ -6728,7 +6728,7 @@ MonoBehaviour:
     CustomLookAtTarget: 0
   Lens:
     FieldOfView: 34
-    OrthographicSize: 9
+    OrthographicSize: 7.5
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -6755,7 +6755,7 @@ Transform:
   m_GameObject: {fileID: 1574702695}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -19, y: -6.37, z: -10}
+  m_LocalPosition: {x: -19, y: -4.17, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7888,7 +7888,7 @@ GameObject:
   - component: {fileID: 1803151771}
   - component: {fileID: 1803151772}
   m_Layer: 5
-  m_Name: Cave - Zone2
+  m_Name: Forest - Zone2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
