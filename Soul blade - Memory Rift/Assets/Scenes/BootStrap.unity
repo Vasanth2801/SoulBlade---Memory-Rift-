@@ -842,7 +842,7 @@ GameObject:
   - component: {fileID: 261777856}
   - component: {fileID: 261777857}
   m_Layer: 5
-  m_Name: Cave - Zone3
+  m_Name: Forest - Zone3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4080,7 +4080,7 @@ GameObject:
   - component: {fileID: 975746955}
   - component: {fileID: 975746956}
   m_Layer: 5
-  m_Name: Cave - Zone4
+  m_Name: Forest - Zone4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
